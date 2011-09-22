@@ -64,6 +64,7 @@ set laststatus=2
 "no backups please
 set nobackup
 set noswapfile
+set viminfo=
 
 "recalculate the trailing whitespace warning when idle, and after saving
 autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
@@ -374,5 +375,6 @@ nmap <silent> <leader>s :set spell!<CR>
 " Set region to British English
 set spelllang=en_gb
 
-" Disable saving the viminfo file.
-set viminfo=
+" Rails settings
+command! Rroutes :Redit config/routes.rb
+command! RTroutes :RTedit config/routes.rb

@@ -19,6 +19,7 @@ git_bundles = [
   "git://github.com/scrooloose/nerdtree.git",
   "git://github.com/scrooloose/nerdcommenter.git",
   "git://github.com/scrooloose/syntastic.git",
+  "git://github.com/corntrace/bufexplorer.git",
 ]
 
 vim_org_scripts = [
