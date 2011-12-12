@@ -15,9 +15,6 @@ set showmode    "show current mode down the bottom
 set incsearch   "find the next match as we type the search
 set hlsearch    "hilight searches by default
 
-set nowrap      "dont wrap lines
-set linebreak   "wrap lines at convenient points
-
 "statusline setup
 set statusline=%f       "tail of the filename
 
@@ -196,10 +193,6 @@ set autoindent
 
 "folding settings
 set nofoldenable
-set foldmethod=syntax
-set foldlevel=1
-set foldnestmax=5
-set foldtext=strpart(getline(v:foldstart),0,180).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
 
 " Set line numbers
 set number
@@ -302,21 +295,21 @@ colors ir_black
 let mapleader = "\\"
 
 " Leader shortcuts for Rails commands
-map <Leader>m :Rmodel
-map <Leader>c :Rcontroller
-map <Leader>v :Rview
-map <Leader>u :Runittest
-map <Leader>f :Rfunctionaltest
-map <Leader>tm :RTmodel
-map <Leader>tc :RTcontroller
-map <Leader>tv :RTview
-map <Leader>tu :RTunittest
-map <Leader>tf :RTfunctionaltest
-map <Leader>sm :RSmodel
-map <Leader>sc :RScontroller
-map <Leader>sv :RSview
-map <Leader>su :RSunittest
-map <Leader>sf :RSfunctionaltest
+map <Leader>m :Rmodel 
+map <Leader>c :Rcontroller 
+map <Leader>v :Rview 
+map <Leader>u :Runittest 
+map <Leader>f :Rfunctionaltest 
+map <Leader>tm :RTmodel 
+map <Leader>tc :RTcontroller 
+map <Leader>tv :RTview 
+map <Leader>tu :RTunittest 
+map <Leader>tf :RTfunctionaltest 
+map <Leader>sm :RSmodel 
+map <Leader>sc :RScontroller 
+map <Leader>sv :RSview 
+map <Leader>su :RSunittest 
+map <Leader>sf :RSfunctionaltest 
 
 " Hide search highlighting
 map <Leader>h :nohl <CR>
@@ -341,6 +334,7 @@ set backspace+=eol
 
 " Set no wrap and bind.
 set nowrap
+set linebreak   "wrap lines at convenient points
 map <F5> :set nowrap! <CR>
 
 " Replace whitespace.
