@@ -287,9 +287,8 @@ endfunction
 imap jk <Esc>
 
 " Color scheme
-"let g:zenburn_high_Contrast=1
-"colors zenburn
-colors ir_black
+colors jellybeans
+let jellybeans_use_lowcolor_black=1
 
 " \ is the leader character
 let mapleader = "\\"
@@ -319,7 +318,7 @@ map <Leader>h :nohl <CR>
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " Maps autocomplete to tab
-imap <Tab> <C-N>
+"imap <Tab> <C-N>
 
 " Add buffer cycling.
 set hidden
