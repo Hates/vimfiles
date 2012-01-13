@@ -1030,6 +1030,8 @@ function! s:app_tags_command() dict
     let cmd = "exuberant-ctags"
   elseif executable("ctags-exuberant")
     let cmd = "ctags-exuberant"
+  elseif executable("exctags")
+    let cmd = "exctags"
   elseif executable("ctags")
     let cmd = "ctags"
   elseif executable("ctags.exe")
@@ -2132,6 +2134,7 @@ function! s:BufFinderCommands()
   call s:addfilecmds("controller")
   call s:addfilecmds("mailer")
   call s:addfilecmds("migration")
+  call s:addfilecmds("schema")
   call s:addfilecmds("observer")
   call s:addfilecmds("helper")
   call s:addfilecmds("layout")
@@ -2285,6 +2288,14 @@ function! s:migrationList(A,L,P)
     call map(migrations,'s:sub(v:val,"^[0-9]*_","")')
     return s:autocamelize(migrations,a:A)
   endif
+endfunction
+
+function! s:schemaList(A,L,P)
+  let tables = s:readfile(rails#app().path('db/schema.rb'))
+  let table_re = '^\s\+create_table\s["'':]\zs[^"'',]*\ze'
+  call map(tables,'matchstr(v:val, table_re)')
+  call filter(tables,'strlen(v:val)')
+  return s:autocamelize(tables, a:A)
 endfunction
 
 function! s:unittestList(A,L,P)
@@ -2514,6 +2525,15 @@ function! s:migrationEdit(cmd,...)
   else
     return s:error("Migration not found".(arg=='' ? '' : ': '.arg))
   endif
+endfunction
+
+function! s:schemaEdit(cmd,...)
+  let cmd = s:findcmdfor(a:cmd)
+  let schema = 'db/'.s:environment().'_structure.sql'
+  if rails#app().has_file('db/schema.rb') || !rails#app().has_file(schema)
+    let schema = 'db/schema.rb'
+  endif
+  call s:findedit(cmd,schema.(a:0 ? '#'.a:1 : ''))
 endfunction
 
 function! s:fixturesEdit(cmd,...)
@@ -3549,7 +3569,7 @@ function! s:BufSyntax()
         syn keyword rubyRailsARCallbackMethod around_create around_destroy around_save around_update
         syn keyword rubyRailsARCallbackMethod after_commit after_find after_initialize after_rollback after_touch
         syn keyword rubyRailsARClassMethod attr_accessible attr_protected attr_readonly establish_connection set_inheritance_column set_locking_column set_primary_key set_sequence_name set_table_name
-        syn keyword rubyRailsARValidationMethod validate validates validate_on_create validate_on_update validates_acceptance_of validates_associated validates_confirmation_of validates_each validates_exclusion_of validates_format_of validates_inclusion_of validates_length_of validates_numericality_of validates_presence_of validates_size_of validates_uniqueness_of validates_attachment_presence
+        syn keyword rubyRailsARValidationMethod validate validates validate_on_create validate_on_update validates_acceptance_of validates_associated validates_confirmation_of validates_each validates_exclusion_of validates_format_of validates_inclusion_of validates_length_of validates_numericality_of validates_presence_of validates_size_of validates_uniqueness_of
         syn keyword rubyRailsMethod logger
       endif
       if buffer.type_name('model-aro')
@@ -3600,7 +3620,7 @@ function! s:BufSyntax()
         syn match rubyRailsTestMethod '\.\@<!\<stub\>!\@!'
         if !buffer.type_name('spec-model')
           syn match   rubyRailsTestControllerMethod  '\.\@<!\<\%(get\|post\|put\|delete\|head\|process\|assigns\)\>'
-          syn keyword rubyRailsTestControllerMethod  integrate_views
+          syn keyword rubyRailsTestControllerMethod  integrate_views render_views
           syn keyword rubyRailsMethod params request response session flash
           syn keyword rubyRailsMethod polymorphic_path polymorphic_url
         endif
@@ -3699,6 +3719,9 @@ function! s:BufSyntax()
       set isk+=$
       exe "syn keyword javascriptRailsFunction ".s:javascript_functions
 
+    elseif &syntax == "scss" || &syntax == "sass"
+      syn match sassFunction "\<\%(\%(asset\|image\|font\|video\|audio\|javascript\|stylesheet\)-\%(url\|path\)\)\>(\@=" contained
+      syn match sassFunction "\<\asset-data-url\>(\@=" contained
     endif
   endif
   call s:HiDefaults()
@@ -4536,9 +4559,7 @@ augroup railsPluginAuto
   autocmd BufWritePost */tasks/**.rake            call rails#cache_clear("rake_tasks")
   autocmd BufWritePost */generators/**            call rails#cache_clear("generators")
   autocmd FileType * if exists("b:rails_root") | call s:BufSettings() | endif
-  autocmd Syntax ruby,eruby,yaml,haml,javascript,coffee,railslog if exists("b:rails_root") | call s:BufSyntax() | endif
-  autocmd QuickFixCmdPre  *make* call s:push_chdir()
-  autocmd QuickFixCmdPost *make* call s:pop_command()
+  autocmd Syntax ruby,eruby,yaml,haml,javascript,coffee,railslog,sass,scss if exists("b:rails_root") | call s:BufSyntax() | endif
 augroup END
 
 " }}}1
