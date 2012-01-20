@@ -9,10 +9,11 @@ call vundle#rc()
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
+Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'tpope/vim-rails.git'
+Bundle 'tpope/vim-rails'
+Bundle 'kchmck/vim-coffee-script'
 
 Bundle 'bufexplorer.zip'
 
@@ -88,9 +89,6 @@ if !has("gui")
     let g:CSApprox_loaded = 1
 endif
 
-"map to bufexplorer
-nnoremap <C-B> :BufExplorer<cr>
-
 "map Q to something useful
 noremap Q gq
 
@@ -99,40 +97,6 @@ nnoremap Y y$
 
 "mark syntax errors with :signs
 let g:syntastic_enable_signs=1
-
-"visual search mappings
-function! s:VSetSearch()
-    let temp = @@
-    norm! gvy
-    let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-    let @@ = temp
-endfunction
-vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR>
-vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR>
-
-"jump to last cursor position when opening a file
-"dont do it when writing a commit log entry
-autocmd BufReadPost * call SetCursorPosition()
-function! SetCursorPosition()
-    if &filetype !~ 'commit\c'
-        if line("'\"") > 0 && line("'\"") <= line("$")
-            exe "normal! g`\""
-            normal! zz
-        endif
-    end
-endfunction
-
-"define :HighlightLongLines command to highlight the offending parts of
-"lines that are longer than the specified length (defaulting to 80)
-command! -nargs=? HighlightLongLines call s:HighlightLongLines('<args>')
-function! s:HighlightLongLines(width)
-    let targetWidth = a:width != '' ? a:width : 79
-    if targetWidth > 0
-        exec 'match Todo /\%>' . (targetWidth) . 'v/'
-    else
-        echomsg "Usage: HighlightLongLines [natural number]"
-    endif
-endfunction
 
 " Color scheme
 colors jellybeans
@@ -169,9 +133,6 @@ map <Leader>h :nohl <CR>
 " Normal mode: <Leader>e
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
-" Maps autocomplete to tab
-"imap <Tab> <C-N>
-
 " Add buffer cycling.
 set hidden
 nnoremap <C-n> :bnext<CR>
@@ -188,11 +149,14 @@ map <F5> :set nowrap! <CR>
 nnoremap <silent><C-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
+" Bufexplorer
+nnoremap <C-B> :BufExplorer<cr>
+
 " NERDTree
 nnoremap <Leader>r :NERDTreeToggle<CR>
 
 " Highlight the current line
-:set cursorline
+set cursorline
 
 " Set the tag file search order
 set tags=./tags
@@ -200,12 +164,9 @@ set tags=./tags
 " User ack not grep
 set grepprg=ack
 
-" Command-T
-nmap <leader>t :CommandT<CR>
+" Set region to British English
+set spelllang=en_gb
 
 " Toggle spell checking on and off with `,s`
 let mapleader = ","
 nmap <silent> <leader>s :set spell!<CR>
-
-" Set region to British English
-set spelllang=en_gb
