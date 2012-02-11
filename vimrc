@@ -9,10 +9,12 @@ call vundle#rc()
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-rails'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'msanders/snipmate.vim'
 Bundle 'kchmck/vim-coffee-script'
 
 Bundle 'bufexplorer.zip'
