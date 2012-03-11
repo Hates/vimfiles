@@ -17,6 +17,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'lukaszb/vim-web-indent'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'wincent/Command-T'
 
 Bundle 'bufexplorer.zip'
 
@@ -129,6 +130,9 @@ map <Leader>sf :RSfunctionaltest
 command! Rroutes :Redit config/routes.rb
 command! RTroutes :RTedit config/routes.rb
 
+" CommandT
+map <Leader>t :CommandT<CR>
+
 " Hide search highlighting
 map <Leader>h :nohl <CR>
 
@@ -161,12 +165,6 @@ nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " Bufexplorer
 nnoremap <C-B> :BufExplorer<cr>
-
-" NERDTree
-nnoremap <Leader>r :NERDTreeToggle<CR>
-
-" Open current file in Marked
-nnoremap <leader>M :silent !open -a Marked.app '%:p'<cr>
 
 " Highlight the current line
 set cursorline
