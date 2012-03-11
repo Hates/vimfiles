@@ -17,7 +17,6 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'lukaszb/vim-web-indent'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'kchmck/vim-coffee-script'
 
 Bundle 'bufexplorer.zip'
 
@@ -148,9 +147,10 @@ set hidden
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprevious<CR>
 
-set linebreak   "wrap lines at convenient points
+" Toggle wrapping
+set linebreak "wrap lines at convenient points
 set nowrap " Set no wrap and bind.
-map <F5> :set nowrap! <CR>
+nnoremap <F5> :set nowrap! <CR>
 
 " Replace whitespace.
 nnoremap <silent> <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
@@ -161,6 +161,12 @@ nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " Bufexplorer
 nnoremap <C-B> :BufExplorer<cr>
+
+" NERDTree
+nnoremap <Leader>r :NERDTreeToggle<CR>
+
+" Open current file in Marked
+nnoremap <leader>M :silent !open -a Marked.app '%:p'<cr>
 
 " Highlight the current line
 set cursorline
