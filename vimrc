@@ -9,12 +9,14 @@ call vundle#rc()
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-surround'
+Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
+Bundle 'lukaszb/vim-web-indent'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'msanders/snipmate.vim'
 Bundle 'kchmck/vim-coffee-script'
 
 Bundle 'bufexplorer.zip'
@@ -101,8 +103,8 @@ nnoremap Y y$
 let g:syntastic_enable_signs=1
 
 " Color scheme
-colors jellybeans
 let jellybeans_use_lowcolor_black=1
+colors jellybeans
 
 " \ is the leader character
 let mapleader = "\\"
@@ -135,6 +137,12 @@ map <Leader>h :nohl <CR>
 " Normal mode: <Leader>e
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
+" NERDTree
+nnoremap <Leader>r :NERDTreeToggle<CR>
+
+" Marked
+nnoremap <leader>M :silent !open -a Marked.app '%:p'<cr>
+
 " Add buffer cycling.
 set hidden
 nnoremap <C-n> :bnext<CR>
@@ -145,7 +153,7 @@ set nowrap " Set no wrap and bind.
 map <F5> :set nowrap! <CR>
 
 " Replace whitespace.
-:nnoremap <silent> <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nnoremap <silent> <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " Ctrl-J/K deletes blank line below/above, and Ctrl-j/k inserts.
 nnoremap <silent><C-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
@@ -153,9 +161,6 @@ nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " Bufexplorer
 nnoremap <C-B> :BufExplorer<cr>
-
-" NERDTree
-nnoremap <Leader>r :NERDTreeToggle<CR>
 
 " Highlight the current line
 set cursorline
