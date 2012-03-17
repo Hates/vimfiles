@@ -9,6 +9,7 @@ call vundle#rc()
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
+Bundle 'godlygeek/tabular'
 Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
@@ -103,8 +104,7 @@ nnoremap Y y$
 let g:syntastic_enable_signs=1
 
 " Color scheme
-let jellybeans_use_lowcolor_black=1
-colors jellybeans
+colors jellybeans_black
 
 " \ is the leader character
 let mapleader = "\\"
