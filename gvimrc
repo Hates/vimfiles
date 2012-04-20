@@ -5,7 +5,7 @@ let g:fullsize = 200
 "let &columns = g:halfsize
 
 " Font
-set guifont=Monaco:h14.0
+set guifont=Menlo:h14.0
 
 " No audible bell
 set vb

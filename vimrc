@@ -83,9 +83,6 @@ syntax on
 set mouse=a
 set ttymouse=xterm2
 
-"tell the term has 256 colors
-set t_Co=256
-
 "hide buffers when not displayed
 set hidden
 
@@ -103,8 +100,12 @@ nnoremap Y y$
 "mark syntax errors with :signs
 let g:syntastic_enable_signs=1
 
+"tell the term has 256 colors
+set t_Co=256
+
 " Color scheme
 colors jellybeans_black
+let g:Powerline_symbols = 'fancy'
 
 " \ is the leader character
 let mapleader = "\\"
