@@ -1,12 +1,22 @@
+# Clone the project into your home directory
+
+`$ git clone git@github.com:Hates/vimfiles.git ~/.vim`
+
 # Create your initial symbolic links.
 
-~ ln -s ~/{{ download_path }}/ .vim   
+`$ ln -s ~/.vim/vimrc ~/.vimrc`  
 
-~ ln -s ~/{{ download_path }}/vimrc .vimrc  
-
-~ ln -s ~/{{ download_path }}/gvimrc .gvimrc
+`$ ln -s ~/.vim/gvimrc ~/.gvimrc`
 
 
 # Checkout vundle.
 
 https://github.com/gmarik/vundle
+
+`$ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle`
+
+Then in Vim run
+
+`:BundleClean`
+
+`:BundleInstall`
