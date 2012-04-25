@@ -1,6 +1,8 @@
 # Clone the project into your home directory
 
-`$ git clone git@github.com:Hates/vimfiles.git ~/.vim`
+```
+$ git clone git@github.com:Hates/vimfiles.git ~/.vim`
+```
 
 # Create your initial symbolic links.
 
