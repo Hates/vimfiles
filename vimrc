@@ -18,7 +18,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'lukaszb/vim-web-indent'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'wincent/Command-T'
+"Bundle 'wincent/Command-T'
+Bundle 'kien/ctrlp.vim'
 
 Bundle 'bufexplorer.zip'
 
@@ -62,7 +63,7 @@ set nofoldenable
 set number
 
 set wildmode=list:longest   "make cmdline tab completion similar to bash
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip "ignore these files
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
 
 "display tabs and trailing spaces
@@ -104,8 +105,8 @@ let g:syntastic_enable_signs=1
 set t_Co=256
 
 " Color scheme
-colors jellybeans_black
 let g:Powerline_symbols = 'fancy'
+colors jellybeans_black
 
 " \ is the leader character
 let mapleader = "\\"
@@ -132,8 +133,13 @@ command! Rroutes :Redit config/routes.rb
 command! RTroutes :RTedit config/routes.rb
 
 " CommandT
-map <Leader>t :CommandT<CR>
-let g:CommandTMaxHeight=12
+"map <Leader>t :CommandT<CR>
+"let g:CommandTMaxHeight=12
+
+" CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
 " Hide search highlighting
 map <Leader>h :nohl <CR>
