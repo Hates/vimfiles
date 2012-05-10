@@ -159,6 +159,9 @@ set hidden
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprevious<CR>
 
+" Toggle paste
+nnoremap <F4> :set paste!<Bar>set paste?<CR>
+
 " Toggle wrapping
 set linebreak "wrap lines at convenient points
 set nowrap " Set no wrap and bind.
