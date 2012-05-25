@@ -159,8 +159,8 @@ set hidden
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprevious<CR>
 
-" Save on double escape
-map <Esc><Esc> :w<CR>
+" Save on ESC-w
+map <Esc>w :w<CR>
 
 " Toggle paste
 nnoremap <F4> :set paste!<Bar>set paste?<CR>
