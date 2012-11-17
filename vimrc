@@ -20,6 +20,8 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'lukaszb/vim-web-indent'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
+Bundle 'vim-scripts/Specky'
+Bundle 'Lokaltog/vim-easymotion'
 
 Bundle 'bufexplorer.zip'
 
@@ -106,7 +108,8 @@ set t_Co=256
 
 " Color scheme
 let g:Powerline_symbols = 'fancy'
-colors jellybeans_black
+set background=dark
+colors Tomorrow-Night
 
 " \ is the leader character
 let mapleader = "\\"
@@ -132,10 +135,6 @@ map <Leader>f :Rfunctionaltest
 command! Rroutes :Redit config/routes.rb
 command! RTroutes :RTedit config/routes.rb
 
-" CommandT
-"map <Leader>t :CommandT<CR>
-"let g:CommandTMaxHeight=12
-
 " CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_working_path_mode = 0
@@ -150,6 +149,25 @@ map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " NERDTree
 nnoremap <Leader>r :NERDTreeToggle<CR>
+
+" Auto open NERDTree and make main window active
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
+" Close window if NERDTree is last window
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+function! s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
 
 " Marked
 nnoremap <leader>M :silent !open -a Marked.app '%:p'<cr>
@@ -172,6 +190,11 @@ nnoremap <F5> :set nowrap! <CR>
 
 " Replace whitespace.
 nnoremap <silent> <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+" Findhighlighting
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " Ctrl-J/K deletes blank line below/above, and Ctrl-j/k inserts.
 nnoremap <silent><C-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
