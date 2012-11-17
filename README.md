@@ -22,7 +22,7 @@
 - \\-h - Hide search
 - \\-r - Open nerdTree
 - \\-M - Open file in Marked
-- ESC-ESC - Save
+- ESC-M - Save
 - F4 - Toggle paste
 - F5 - Toggle wrap
 - F6 - Strip end of string whitespace

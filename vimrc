@@ -219,8 +219,7 @@ set spelllang=en_gb
 let mapleader = ","
 nmap <silent> <leader>s :set spell!<CR>
 
-" Relative line numbers
-set rnu
+" Relative numbers when not in insert mode
 au BufEnter * :set rnu
 au BufLeave * :set nu
 au WinEnter * :set rnu
