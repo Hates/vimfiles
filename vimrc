@@ -8,20 +8,22 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 " required!
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Lokaltog/vim-powerline'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'kien/ctrlp.vim'
+Bundle 'kshenoy/vim-signature'
+Bundle 'lukaszb/vim-web-indent'
 Bundle 'msanders/snipmate.vim'
-Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'sjl/gundo.vim'
+Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'lukaszb/vim-web-indent'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/Specky'
-Bundle 'Lokaltog/vim-easymotion'
 
 Bundle 'bufexplorer.zip'
 
@@ -180,6 +182,11 @@ nnoremap <C-p> :bprevious<CR>
 " Save on ESC-w
 map <Esc>w :w<CR>
 
+" Toggle Gundo
+inoremap <silent> <F1> <ESC>:GundoToggle<CR>
+nnoremap <silent> <F1> :GundoToggle<CR>
+vnoremap <silent> <F1> <ESC>:GundoToggle<CR>
+"
 " Toggle paste
 nnoremap <F4> :set paste!<Bar>set paste?<CR>
 
