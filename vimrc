@@ -198,6 +198,9 @@ nnoremap <F5> :set nowrap! <CR>
 " Replace whitespace.
 nnoremap <silent> <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
+" Ruby Hash syntax change
+map <F9> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
+
 " Findhighlighting
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
