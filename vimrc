@@ -116,25 +116,9 @@ colors Tomorrow-Night
 let mapleader = "\\"
 
 " Leader shortcuts for Rails commands
-map <Leader>m :Rmodel 
-map <Leader>c :Rcontroller 
-map <Leader>v :Rview 
-map <Leader>u :Runittest 
-map <Leader>f :Rfunctionaltest 
-"map <Leader>tm :RTmodel 
-"map <Leader>tc :RTcontroller 
-"map <Leader>tv :RTview 
-"map <Leader>tu :RTunittest 
-"map <Leader>tf :RTfunctionaltest 
-"map <Leader>sm :RSmodel 
-"map <Leader>sc :RScontroller 
-"map <Leader>sv :RSview 
-"map <Leader>su :RSunittest 
-"map <Leader>sf :RSfunctionaltest 
-
-" Rails settings
-command! Rroutes :Redit config/routes.rb
-command! RTroutes :RTedit config/routes.rb
+nnoremap <Leader>m :Rmodel 
+nnoremap <Leader>c :Rcontroller 
+nnoremap <Leader>v :Rview 
 
 " Hide search highlighting
 map <Leader>h :nohl <CR>
@@ -194,6 +178,9 @@ set grepprg=ack
 " Set region to British English
 set spelllang=en_gb
 
+" Toggle spell checking on and off with `,s`
+nmap <silent> <leader>s :set spell!<CR>
+
 " Map ENTER to save
 nmap <CR> :write<CR>
 
@@ -201,9 +188,6 @@ nmap <CR> :write<CR>
 let g:EasyMotion_leader_key = ';'
 nmap s ;w
 nmap S ;b
-
-" Toggle spell checking on and off with `,s`
-nmap <silent> <leader>s :set spell!<CR>
 
 " Relative numbers when not in insert mode
 au BufEnter * :set rnu
