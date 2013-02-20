@@ -136,11 +136,6 @@ map <Leader>f :Rfunctionaltest
 command! Rroutes :Redit config/routes.rb
 command! RTroutes :RTedit config/routes.rb
 
-" CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
-
 " Hide search highlighting
 map <Leader>h :nohl <CR>
 
@@ -151,22 +146,16 @@ map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 " NERDTree
 nnoremap <Leader>r :NERDTreeToggle<CR>
 
-" Marked
-nnoremap <leader>M :silent !open -a Marked.app '%:p'<cr>
-
-" Add buffer cycling.
-set hidden
-nnoremap <C-n> :bnext<CR>
-nnoremap <C-p> :bprevious<CR>
-
-" Save on ESC-w
-map <Esc>w :w<CR>
-
 " Toggle Gundo
 inoremap <silent> <F1> <ESC>:GundoToggle<CR>
 nnoremap <silent> <F1> :GundoToggle<CR>
 vnoremap <silent> <F1> <ESC>:GundoToggle<CR>
-"
+
+" CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+
 " Toggle paste
 nnoremap <F4> :set paste!<Bar>set paste?<CR>
 
@@ -212,12 +201,6 @@ nmap <CR> :write<CR>
 let g:EasyMotion_leader_key = ';'
 nmap s ;w
 nmap S ;b
-
-" Move between panes
-noremap <C-H> <C-W>h
-noremap <C-L> <C-W>l
-noremap <C-J> <C-W>j
-noremap <C-K> <C-W>k
 
 " Toggle spell checking on and off with `,s`
 nmap <silent> <leader>s :set spell!<CR>
