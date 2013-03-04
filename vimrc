@@ -10,12 +10,14 @@ call vundle#rc()
 " required!
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'ervandew/supertab'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kshenoy/vim-signature'
 Bundle 'lukaszb/vim-web-indent'
+Bundle 'majutsushi/tagbar'
 Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
@@ -140,24 +142,39 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
-" Toggle paste
+" Function key mappings
+
+" F1 - Unused
+" F2 - Unused
+" F3 - Unused
+" F4 - Toggle paste
 nnoremap <F4> :set paste!<Bar>set paste?<CR>
 
-" Toggle wrapping
+" F5 - Toggle wrapping
 set linebreak "wrap lines at convenient points
 set nowrap " Set no wrap and bind.
 nnoremap <F5> :set nowrap! <CR>
 
-" Replace whitespace.
+" F6 - Replace whitespace.
 nnoremap <silent> <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
-" Ruby Hash syntax change
+" F7 - Unused
+"
+" F8 - Toggle tagbar 
+nmap <F8> :TagbarToggle<CR>
+
+" F9 - Ruby Hash syntax change
 map <F9> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
 
-" Findhighlighting
+" F10 - Findhighlighting
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+" F11 - Unused
+" F12 - Unused
+
+" Normal key mappings
 
 " Ctrl-J/K deletes blank line below/above, and Ctrl-j/k inserts.
 nnoremap <silent><C-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
