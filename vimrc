@@ -8,14 +8,14 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 " required!
+Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'ervandew/supertab'
-Bundle 'gmarik/vundle'
-Bundle 'godlygeek/tabular'
+"Bundle 'godlygeek/tabular'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
-Bundle 'kshenoy/vim-signature'
+"Bundle 'kshenoy/vim-signature'
 Bundle 'lukaszb/vim-web-indent'
 Bundle 'majutsushi/tagbar'
 Bundle 'msanders/snipmate.vim'
@@ -25,6 +25,7 @@ Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-surround'
+"Bundle 'skwp/vim-rspec'
 
 Bundle 'bufexplorer.zip'
 
@@ -68,7 +69,7 @@ set nofoldenable
 set number
 
 set wildmode=list:longest   "make cmdline tab completion similar to bash
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip "ignore these files
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.log,*.jpeg,*.jpg,*.png,*.gif "ignore these files
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
 
 "display tabs and trailing spaces
@@ -118,9 +119,9 @@ colors Tomorrow-Night
 let mapleader = "\\"
 
 " Leader shortcuts for Rails commands
-nnoremap <Leader>m :Rmodel 
-nnoremap <Leader>c :Rcontroller 
-nnoremap <Leader>v :Rview 
+nnoremap <Leader>m :Rmodel
+nnoremap <Leader>c :Rcontroller
+nnoremap <Leader>v :Rview
 
 " Hide search highlighting
 map <Leader>h :nohl <CR>
@@ -132,20 +133,25 @@ map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 " NERDTree
 nnoremap <Leader>r :NERDTreeToggle<CR>
 
-" Toggle Gundo
-inoremap <silent> <F1> <ESC>:GundoToggle<CR>
-nnoremap <silent> <F1> :GundoToggle<CR>
-vnoremap <silent> <F1> <ESC>:GundoToggle<CR>
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn|sass-cache)$',
+  \ 'file': '\v\.(exe|so|dll)$'
+  \ }
 
 " Function key mappings
 
-" F1 - Unused
-" F2 - Unused
+" F1 - Gundo
+inoremap <silent> <F1> <ESC>:GundoToggle<CR>
+nnoremap <silent> <F1> :GundoToggle<CR>
+vnoremap <silent> <F1> <ESC>:GundoToggle<CR>
+
+" F2 - Toggle tagbar
+nmap <F2> :TagbarToggle<CR>
+
 " F3 - Unused
 " F4 - Toggle paste
 nnoremap <F4> :set paste!<Bar>set paste?<CR>
@@ -159,9 +165,7 @@ nnoremap <F5> :set nowrap! <CR>
 nnoremap <silent> <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " F7 - Unused
-"
-" F8 - Toggle tagbar 
-nmap <F8> :TagbarToggle<CR>
+" F8 - Unused
 
 " F9 - Ruby Hash syntax change
 map <F9> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
@@ -215,3 +219,8 @@ au InsertEnter * :set nu
 au InsertLeave * :set rnu
 au FocusLost * :set nu
 au FocusGained * :set rnu
+
+" Click past 220
+if has('mouse_sgr')
+  set ttymouse=sgr
+endif

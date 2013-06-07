@@ -25,3 +25,8 @@ set guioptions+=c
 
 " fullscreen maximizes vertically AND horizontally
 set fuoptions=maxvert,maxhorz
+
+" Click past 220 please
+if has('mouse_sgr')
+  set ttymouse=sgr
+endif
