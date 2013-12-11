@@ -4,17 +4,17 @@
 
 # Plugins
 
-- godlygeek/tabular
+- gmarik/vundle
+- Lokaltog/vim-easymotion
+- bling/vim-airline
+- kien/ctrlp.vim
+- lukaszb/vim-web-indent
 - msanders/snipmate.vim
-- scrooloose/nerdtree
 - scrooloose/nerdcommenter
+- scrooloose/nerdtree
 - tpope/vim-rails
 - tpope/vim-surround
-- tpope/vim-fugitive
-- kchmck/vim-coffee-script
-- lukaszb/vim-web-indent
-- Lokaltog/vim-powerline
-- kien/ctrlp
+- sjl/gundo.vim
 
 # Custom Bindings
 
@@ -22,10 +22,11 @@
 - \\-h - Hide search
 - \\-r - Open nerdTree
 - \\-M - Open file in Marked
-- ESC-M - Save
+- F1 - Open Gundo
 - F4 - Toggle paste
 - F5 - Toggle wrap
 - F6 - Strip end of string whitespace
+- F9 - Convert Ruby hash syntax
 - CTRL J/K - Insert line above/below cursor
 - CTRL B - Open Buffexplorer
 
