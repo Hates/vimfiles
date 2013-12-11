@@ -10,22 +10,21 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'ervandew/supertab'
-"Bundle 'godlygeek/tabular'
-Bundle 'kchmck/vim-coffee-script'
+"Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline'
+"Bundle 'ervandew/supertab'
+"Bundle 'Valloric/YouCompleteMe'
+"Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
-"Bundle 'kshenoy/vim-signature'
 Bundle 'lukaszb/vim-web-indent'
-Bundle 'majutsushi/tagbar'
+"Bundle 'majutsushi/tagbar'
 Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-Bundle 'sjl/gundo.vim'
-Bundle 'tpope/vim-fugitive'
+"Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-surround'
-"Bundle 'skwp/vim-rspec'
+Bundle 'sjl/gundo.vim'
 
 Bundle 'bufexplorer.zip'
 
@@ -111,9 +110,29 @@ let g:syntastic_enable_signs=1
 set t_Co=256
 
 " Color scheme
-let g:Powerline_symbols = 'fancy'
 set background=dark
 colors Tomorrow-Night
+"let g:Powerline_symbols = 'fancy'
+
+"" airline settings
+" remove separators
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+" remove unused modes
+let g:airline_enable_fugitive=0
+let g:airline_enable_syntastic=0
+" set second section to filename
+let g:airline_section_b="%f"
+" empty third and fourth sections
+let g:airline_section_c=""
+let g:airline_section_x=""
+" put filetype in fifth section
+let g:airline_section_y="%Y"
+
+set timeout ttimeoutlen=50
+
+" Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set noshowmode
 
 " \ is the leader character
 let mapleader = "\\"
@@ -133,7 +152,6 @@ map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 " NERDTree
 nnoremap <Leader>r :NERDTreeToggle<CR>
 
-
 " CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_working_path_mode = 0
@@ -142,6 +160,22 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$'
   \ }
 
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
 " Function key mappings
 
 " F1 - Gundo
@@ -149,9 +183,7 @@ inoremap <silent> <F1> <ESC>:GundoToggle<CR>
 nnoremap <silent> <F1> :GundoToggle<CR>
 vnoremap <silent> <F1> <ESC>:GundoToggle<CR>
 
-" F2 - Toggle tagbar
-nmap <F2> :TagbarToggle<CR>
-
+" F2 - Unused
 " F3 - Unused
 " F4 - Toggle paste
 nnoremap <F4> :set paste!<Bar>set paste?<CR>
