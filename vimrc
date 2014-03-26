@@ -10,20 +10,17 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'Lokaltog/vim-powerline'
 Bundle 'bling/vim-airline'
-"Bundle 'ervandew/supertab'
-"Bundle 'Valloric/YouCompleteMe'
-"Bundle 'kchmck/vim-coffee-script'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'kien/ctrlp.vim'
 Bundle 'lukaszb/vim-web-indent'
-"Bundle 'majutsushi/tagbar'
+Bundle 'majutsushi/tagbar'
 Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-"Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-surround'
+Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'sjl/gundo.vim'
 
 Bundle 'bufexplorer.zip'
@@ -183,7 +180,9 @@ inoremap <silent> <F1> <ESC>:GundoToggle<CR>
 nnoremap <silent> <F1> :GundoToggle<CR>
 vnoremap <silent> <F1> <ESC>:GundoToggle<CR>
 
-" F2 - Unused
+" F2 - TagBar
+nmap <F2> :TagbarToggle<CR>
+
 " F3 - Unused
 " F4 - Toggle paste
 nnoremap <F4> :set paste!<Bar>set paste?<CR>
