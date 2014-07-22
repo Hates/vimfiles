@@ -3,30 +3,35 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'bling/vim-airline'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'kien/ctrlp.vim'
-Bundle 'lukaszb/vim-web-indent'
-Bundle 'msanders/snipmate.vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'majutsushi/tagbar'
-Bundle 'sjl/gundo.vim'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'rking/ag.vim'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'bling/vim-airline'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'kien/ctrlp.vim'
+Plugin 'lukaszb/vim-web-indent'
+Plugin 'msanders/snipmate.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plugin 'majutsushi/tagbar'
+Plugin 'sjl/gundo.vim'
+Plugin 'bufexplorer.zip'
+Plugin 'chriskempson/base16-vim'
 
-Bundle 'bufexplorer.zip'
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 "load ftplugins and indent files
 filetype plugin on
@@ -109,9 +114,8 @@ let g:syntastic_enable_signs=1
 "tell the term has 256 colors
 set t_Co=256
 
-" Color scheme
 set background=dark
-colors Tomorrow-Night
+colorscheme base16-tomorrow
 "let g:Powerline_symbols = 'fancy'
 
 "" airline settings
@@ -151,6 +155,7 @@ map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " NERDTree
 nnoremap <Leader>r :NERDTreeToggle<CR>
+let NERDTreeShowLineNumbers=0
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
@@ -245,14 +250,14 @@ nmap s ;w
 nmap S ;b
 
 " Relative numbers when not in insert mode
-au BufEnter * :set rnu
-au BufLeave * :set nu
-au WinEnter * :set rnu
-au WinLeave * :set nu
-au InsertEnter * :set nu
-au InsertLeave * :set rnu
-au FocusLost * :set nu
-au FocusGained * :set rnu
+"au BufEnter * :set rnu
+"au BufLeave * :set nu
+"au WinEnter * :set rnu
+"au WinLeave * :set nu
+"au InsertEnter * :set nu
+"au InsertLeave * :set rnu
+"au FocusLost * :set nu
+"au FocusGained * :set rnu
 
 " Click past 220
 if has('mouse_sgr')
