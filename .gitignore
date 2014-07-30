@@ -1,2 +1,3 @@
 # Ignore bundle directory.
 bundle/
+tmp/
