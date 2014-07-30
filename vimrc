@@ -28,6 +28,7 @@ Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'majutsushi/tagbar'
 Plugin 'sjl/gundo.vim'
 Plugin 'bufexplorer.zip'
+Plugin 'itspriddle/vim-marked'
 Plugin 'chriskempson/base16-vim'
 
 call vundle#end()            " required
@@ -45,7 +46,8 @@ set laststatus=2
 
 "store lots of :cmdline history
 set history=1000
-set undolevels=1000
+set undoreload=10000
+set undofile
 
 set showcmd     "show incomplete cmds down the bottom
 set showmode    "show current mode down the bottom
@@ -55,12 +57,26 @@ set hlsearch    "hilight searches by default
 set ignorecase  "searches are case insensitive...
 set smartcase   "...unless they contain one capital letter
 
-"no backups please
-set nobackup
-set noswapfile
-set viminfo=
+" Backups
+set backup                        " enable backups
+set noswapfile                    " it's 2013, Vim.
 
-"indent settings
+set undodir=~/.vim/tmp/undo//     " undo files
+set backupdir=~/.vim/tmp/backup// " backups
+set directory=~/.vim/tmp/swap//   " swap files
+
+" Make those folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
+
+" Indent settings
 set shiftwidth=2
 set softtabstop=2
 set expandtab
@@ -72,13 +88,21 @@ set nofoldenable
 " Set line numbers
 set number
 
-set wildmode=list:longest   "make cmdline tab completion similar to bash
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.log,*.jpeg,*.jpg,*.png,*.gif "ignore these files
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+set wildmode=list:longest   "make cmdline tab completion similar to bash
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.spl                            " compiled spelling word lists
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.DS_Store                       " OSX bullshit
+set wildignore+=*.orig                           " Merge resolution files
+set wildignore+=*/tmp/*                           " tmp directories
 
 "display tabs and trailing spaces
 set list
 set listchars=tab:▷⋅,trail:⋅,nbsp:⋅,extends:#
+set showbreak=↪
 
 set formatoptions-=o "dont continue comments when pushing o/O
 
@@ -141,10 +165,59 @@ set noshowmode
 " \ is the leader character
 let mapleader = "\\"
 
-" Leader shortcuts for Rails commands
-nnoremap <Leader>m :Rmodel
-nnoremap <Leader>c :Rcontroller
-nnoremap <Leader>v :Rview
+" }}}
+" Highlight Word {{{
+"
+" This mini-plugin provides a few mappings for highlighting words temporarily.
+"
+" Sometimes you're looking at a hairy piece of code and would like a certain
+" word or two to stand out temporarily.  You can search for it, but that only
+" gives you one color of highlighting.  Now you can use <leader>N where N is
+" a number from 1-6 to highlight the current word in a specific color.
+
+function! HiInterestingWord(n) " {{{
+    " Save our location.
+    normal! mz
+
+    " Yank the current word into the z register.
+    normal! "zyiw
+
+    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+    let mid = 86750 + a:n
+
+    " Clear existing matches, but don't worry if they don't exist.
+    silent! call matchdelete(mid)
+
+    " Construct a literal pattern that has to match at boundaries.
+    let pat = '\V\<' . escape(@z, '\') . '\>'
+
+    " Actually match the words.
+    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+
+    " Move back to our original location.
+    normal! `z
+endfunction " }}}
+
+" Mappings {{{
+
+nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
+nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
+nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
+nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
+nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
+nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
+
+" }}}
+" Default Highlights {{{
+
+hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
+hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+
+" }}}
 
 " Hide search highlighting
 map <Leader>h :nohl <CR>
@@ -177,9 +250,6 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Function key mappings
 
@@ -219,6 +289,17 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 
 " Normal key mappings
 
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Select entire buffer
+nnoremap vaa ggvGg_
+nnoremap Vaa ggVG
+
+" bind K to grep word under cursor
+nnoremap K :Ag "\b<C-R><C-W>\b"<CR>:cw<CR>
+
 " Ctrl-J/K deletes blank line below/above, and Ctrl-j/k inserts.
 nnoremap <silent><C-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
@@ -231,9 +312,6 @@ set cursorline
 
 " Set the tag file search order
 set tags=./tags
-
-" User ack not grep
-set grepprg=ack
 
 " Set region to British English
 set spelllang=en_gb
@@ -248,16 +326,6 @@ nmap <CR> :write<CR>
 let g:EasyMotion_leader_key = ';'
 nmap s ;w
 nmap S ;b
-
-" Relative numbers when not in insert mode
-"au BufEnter * :set rnu
-"au BufLeave * :set nu
-"au WinEnter * :set rnu
-"au WinLeave * :set nu
-"au InsertEnter * :set nu
-"au InsertLeave * :set rnu
-"au FocusLost * :set nu
-"au FocusGained * :set rnu
 
 " Click past 220
 if has('mouse_sgr')
