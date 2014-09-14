@@ -4,31 +4,25 @@
 
 # Plugins
 
-- gmarik/vundle
-- Lokaltog/vim-easymotion
+- Shougo/neobundle.vim
+- Shougo/vimproc
+- Shougo/unite.vim
+- Shougo/unite-outline
+- tsukkee/unite-tag
+- tsukkee/unite-help
+- Shougo/neomru.vim
 - bling/vim-airline
-- kien/ctrlp.vim
-- lukaszb/vim-web-indent
+- Lokaltog/vim-easymotion
+- Valloric/YouCompleteMe
 - msanders/snipmate.vim
 - scrooloose/nerdcommenter
-- scrooloose/nerdtree
-- tpope/vim-rails
 - tpope/vim-surround
-- sjl/gundo.vim
-
-# Custom Bindings
-
-- \ - Leader
-- \\-h - Hide search
-- \\-r - Open nerdTree
-- \\-M - Open file in Marked
-- F1 - Open Gundo
-- F4 - Toggle paste
-- F5 - Toggle wrap
-- F6 - Strip end of string whitespace
-- F9 - Convert Ruby hash syntax
-- CTRL J/K - Insert line above/below cursor
-- CTRL B - Open Buffexplorer
+- pangloss/vim-javascript
+- vim-ruby/vim-ruby
+- tpope/vim-rails
+- tpope/vim-haml
+- jeffkreeftmeijer/vim-numbertoggle
+- chriskempson/base16-vim
 
 # Install
 
@@ -45,17 +39,6 @@ $ ln -s ~/.vim/vimrc ~/.vimrc
 $ ln -s ~/.vim/gvimrc ~/.gvimrc
 ```
 
-## Checkout vundle.
+## Follow NeoBundle Install instructions.
 
-https://github.com/gmarik/vundle
-
-```
-$ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-```
-
-Then in Vim run
-
-```
-:BundleClean
-:BundleInstall
-```
+[https://github.com/Shougo/neobundle.vim](https://github.com/Shougo/neobundle.vim)
