@@ -30,19 +30,19 @@ NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'tsukkee/unite-help'
 
 NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'sjl/gundo.vim'
 NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'msanders/snipmate.vim'
+NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-haml'
-NeoBundle 'jeffkreeftmeijer/vim-numbertoggle'
+NeoBundle 'pangloss/vim-javascript'
 
-" Theme plugin.
+" Theme plugins.
+NeoBundle 'bling/vim-airline'
+NeoBundle 'jeffkreeftmeijer/vim-numbertoggle'
 NeoBundle 'chriskempson/base16-vim'
 
 " Required:
@@ -368,7 +368,6 @@ call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
   nmap <buffer> <ESC> <Plug>(unite_exit)
-  imap <buffer> <ESC> <Plug>(unite_exit)
 
   imap <buffer> <C-j> <Plug>(unite_select_next_line)
   imap <buffer> <C-k> <Plug>(unite_select_previous_line)
@@ -376,7 +375,6 @@ function! s:unite_settings()
 
   imap <silent><buffer><expr> <C-s> unite#do_action('split')
   imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
-  imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
 endfunction
 
 " The prefix key
@@ -412,6 +410,7 @@ nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<CR>
 
 " Quick outline
 nnoremap <silent> [unite]o :<C-u>Unite -buffer-name=outline -vertical outline<CR>
+nnoremap [unite]t :!retag<CR>:Unite -no-split -auto-preview -start-insert tag<CR>
 
 " Highlight the current line
 set cursorline
