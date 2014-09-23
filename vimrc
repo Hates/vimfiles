@@ -34,6 +34,7 @@ NeoBundle 'sjl/gundo.vim'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-rails'
@@ -390,10 +391,12 @@ nnoremap <silent> [unite]rc :<C-u>Unite -buffer-name=rcfiles -input=app/controll
 nnoremap <silent> [unite]rm :<C-u>Unite -buffer-name=rmfiles -input=app/models/ file_rec/async<CR>
 nnoremap <silent> [unite]rv :<C-u>Unite -buffer-name=rvfiles -input=app/views/ file_rec/async<CR>
 
-" Quick buffer
-nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=buffers buffer<CR>
+nnoremap <silent> [unite]p :<C-u>Unite -auto-resize file file_mru file_rec/async<CR>
 
-" Quick MRU search
+" Quick buffer
+nnoremap <silent> [unite]b :<C-u>Unite -no-split -buffer-name=buffers buffer<CR>
+
+" Quick mru search
 nnoremap <silent> [unite]m :<C-u>Unite -buffer-name=mru file_mru<CR>
 
 " Quick buffer and mru
