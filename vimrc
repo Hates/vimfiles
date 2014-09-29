@@ -16,20 +16,8 @@ call neobundle#begin(expand('~/.vim/bundle'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'Shougo/vimproc', { 'build': {
-  \   'windows': 'make -f make_mingw32.mak',
-  \   'cygwin': 'make -f make_cygwin.mak',
-  \   'mac': 'make -f make_mac.mak',
-  \   'unix': 'make -f make_unix.mak',
-  \ } }
-
-" Unite
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'tsukkee/unite-help'
-
-NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'jlanzarotta/bufexplorer'
+NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'Lokaltog/vim-easymotion'
@@ -40,10 +28,10 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'jeffkreeftmeijer/vim-numbertoggle'
 
 " Theme plugins.
 NeoBundle 'bling/vim-airline'
-NeoBundle 'jeffkreeftmeijer/vim-numbertoggle'
 NeoBundle 'chriskempson/base16-vim'
 
 " Required:
@@ -255,6 +243,9 @@ map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <Leader>r :NERDTreeToggle<CR>
 let NERDTreeShowLineNumbers=0
 
+" Bufexplorer
+map <C-b> :BufExplorer<CR>
+
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
@@ -315,105 +306,6 @@ nnoremap Vaa ggVG
 " Ctrl-J/K deletes blank line below/above, and Ctrl-j/k inserts.
 nnoremap <silent><C-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
-
-" Unite
-
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-
-" Overwrite status
-let g:unite_force_overwrite_statusline = 0
-
-" Start in insert mode
-let g:unite_enable_start_insert = 1
-
-" Data directory
-let g:unite_data_directory = "~/.unite"
-
-" Enable history yank source
-let g:unite_source_history_yank_enable = 1
-
-" Open in bottom right
-let g:unite_split_rule = "botright"
-
-" Shorten the default update date of 500ms
-let g:unite_update_time = 200
-
-let g:unite_source_file_mru_limit = 1000
-let g:unite_cursor_line_highlight = 'TabLineSel'
-
-let g:unite_source_file_mru_filename_format = ':~:.'
-let g:unite_source_file_mru_time_format = ''
-
-" Check got ag
-if executable('ag')
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-  let g:unite_source_grep_recursive_opt = ''
-
-  let g:unite_source_rec_async_command= 'ag --nocolor --nogroup -g ""'
-endif
-
-call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-  \ 'ignore_pattern', join([
-  \ '\.sass-cache/',
-  \ '\.git/',
-  \ '\vendor/',
-  \ ], '\|'))
-
-call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-  \ 'ignore_globs',
-  \ split(&wildignore, ','))
-
-" Custom mappings for the unite buffer
-autocmd FileType unite call s:unite_settings()
-function! s:unite_settings()
-  nmap <buffer> <ESC> <Plug>(unite_exit)
-
-  imap <buffer> <C-j> <Plug>(unite_select_next_line)
-  imap <buffer> <C-k> <Plug>(unite_select_previous_line)
-  imap <buffer> <c-a> <Plug>(unite_choose_action)
-
-  imap <silent><buffer><expr> <C-s> unite#do_action('split')
-  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
-endfunction
-
-" The prefix key
-nnoremap [unite] <Nop>
-nmap <space> [unite]
-
-" General fuzzy search
-nnoremap <silent> [unite]<space> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file_rec/async<CR>
-
-" Quick file search
-nnoremap <silent> [unite]f :<C-u>Unite -buffer-name=files file_rec/async<CR>
-nnoremap <silent> [unite]rc :<C-u>Unite -buffer-name=rcfiles -input=app/controllers/ file_rec/async<CR>
-nnoremap <silent> [unite]rm :<C-u>Unite -buffer-name=rmfiles -input=app/models/ file_rec/async<CR>
-nnoremap <silent> [unite]rv :<C-u>Unite -buffer-name=rvfiles -input=app/views/ file_rec/async<CR>
-
-nnoremap <silent> [unite]p :<C-u>Unite -auto-resize file file_mru file_rec/async<CR>
-
-" Quick buffer
-nnoremap <silent> [unite]b :<C-u>Unite -no-split -buffer-name=buffers buffer<CR>
-
-" Quick mru search
-nnoremap <silent> [unite]m :<C-u>Unite -buffer-name=mru file_mru<CR>
-
-" Quick buffer and mru
-nnoremap <silent> [unite]u :<C-u>Unite -buffer-name=mru_buffers file_mru buffer<CR>
-
-" Quick grep from cwd
-nnoremap <silent> [unite]g :<C-u>Unite -buffer-name=grep grep:.<CR>
-
-" Quick registers
-nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
-
-" Quick yank history
-nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<CR>
-
-" Quick outline
-nnoremap <silent> [unite]o :<C-u>Unite -buffer-name=outline -vertical outline<CR>
-nnoremap [unite]t :!retag<CR>:Unite -no-split -auto-preview -start-insert tag<CR>
 
 " Highlight the current line
 set cursorline
