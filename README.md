@@ -4,25 +4,25 @@
 
 # Plugins
 
-- Shougo/neobundle.vim
-- Shougo/vimproc
-- Shougo/unite.vim
-- Shougo/unite-outline
-- tsukkee/unite-tag
-- tsukkee/unite-help
-- Shougo/neomru.vim
-- bling/vim-airline
-- Lokaltog/vim-easymotion
-- Valloric/YouCompleteMe
-- msanders/snipmate.vim
-- scrooloose/nerdcommenter
-- tpope/vim-surround
-- pangloss/vim-javascript
-- vim-ruby/vim-ruby
-- tpope/vim-rails
-- tpope/vim-haml
-- jeffkreeftmeijer/vim-numbertoggle
-- chriskempson/base16-vim
+* Shougo/neobundle.vim
+* jlanzarotta/bufexplorer
+* kien/ctrlp.vim
+* sjl/gundo.vim
+* Valloric/YouCompleteMe
+* Lokaltog/vim-easymotion
+* scrooloose/nerdcommenter
+* scrooloose/nerdtree
+* tpope/vim-surround
+* tpope/vim-rails
+* tpope/vim-haml
+* vim-ruby/vim-ruby
+* AndrewRadev/splitjoin.vim
+* pangloss/vim-javascript
+* jeffkreeftmeijer/vim-numbertoggle
+* skalnik/vim-vroom
+* bling/vim-airline
+* zenorocha/dracula-theme
+* chriskempson/base16-vim
 
 # Install
 
@@ -36,7 +36,7 @@ $ git clone git@github.com:Hates/vimfiles.git ~/.vim
 
 ```
 $ ln -s ~/.vim/vimrc ~/.vimrc
-$ ln -s ~/.vim/gvimrc ~/.gvimrc
+$ ln -s ~/.vim/nvimrc ~/.nvimrc
 ```
 
 ## Follow NeoBundle Install instructions.
