@@ -15,26 +15,33 @@ call neobundle#begin(expand('~/.vim/bundle'))
 " Let NeoBundle manage NeoBundle
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundleFetch 'Shougo/neocomplete.vim'
+"NeoBundleFetch 'Shougo/neocomplete.vim'
 
 NeoBundle 'jlanzarotta/bufexplorer'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'sjl/gundo.vim'
-NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'Valloric/YouCompleteMe', {
+      \ 'build' : {
+      \     'mac' : './install.sh',
+      \    },
+      \ }
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-haml'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'AndrewRadev/splitjoin.vim'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'jeffkreeftmeijer/vim-numbertoggle'
+"NeoBundle 'skalnik/vim-vroom'
 "NeoBundle 'xolox/vim-misc'
 "NeoBundle 'mtth/scratch.vim'
 
 " Theme plugins.
 NeoBundle 'bling/vim-airline'
+NeoBundle 'zenorocha/dracula-theme', { 'script_type' : 'colorscheme', 'rtp': 'vim' }
 NeoBundle 'chriskempson/base16-vim'
 
 " Required:
@@ -132,7 +139,7 @@ syntax on
 
 "some stuff to get the mouse going in term
 set mouse=a
-set ttymouse=xterm2
+"set ttymouse=xterm2
 
 "hide buffers when not displayed
 set hidden
@@ -153,21 +160,24 @@ let g:syntastic_enable_signs=1
 
 "tell the term has 256 colors
 set t_Co=256
-
+"set background=dark
+"colorscheme dracula
 set background=dark
 colorscheme base16-tomorrow
 
 "" airline settings
+let g:airline_theme='powerlineish'
 " remove separators
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 " set second section to filename
-let g:airline_section_b="%f"
+let g:airline_section_b='%f'
 " empty third and fourth sections
-let g:airline_section_c=""
-let g:airline_section_x=""
+let g:airline_section_c=''
+let g:airline_section_x=''
 " put filetype in fifth section
-let g:airline_section_y="%Y"
+let g:airline_section_y='%Y'
+let g:airline_section_z=''
 
 set timeout ttimeoutlen=50
 
@@ -340,6 +350,17 @@ if exists('$ITERM_PROFILE')
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
   endif
 end
+
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
 
 " Support for mobile templates
 autocmd BufNewFile,BufRead *.mobile.erb let b:eruby_subtype='html'
