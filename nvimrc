@@ -149,11 +149,8 @@ if !has("gui")
     let g:CSApprox_loaded = 1
 endif
 
-"map Q to something useful
-noremap Q gq
-
-"make Y consistent with C and D
-nnoremap Y y$
+" \ is the leader character
+let mapleader = "\\"
 
 "mark syntax errors with :signs
 let g:syntastic_enable_signs=1
@@ -164,6 +161,15 @@ set t_Co=256
 "colorscheme dracula
 set background=dark
 colorscheme base16-tomorrow
+
+" Highlight the current line
+set cursorline
+
+" Set the tag file search order
+set tags=./tags
+
+" Set region to British English
+set spelllang=en_gb
 
 "" airline settings
 let g:airline_theme='powerlineish'
@@ -184,9 +190,36 @@ set timeout ttimeoutlen=50
 " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set noshowmode
 
-" \ is the leader character
-let mapleader = "\\"
+" Click past 220
+if has('mouse_sgr')
+  set ttymouse=sgr
+endif
 
+" Show the right cursor
+if exists('$ITERM_PROFILE')
+  if exists('$TMUX') 
+    let &t_SI = "\<Esc>[3 q"
+    let &t_EI = "\<Esc>[0 q"
+  else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  endif
+end
+
+" Support for mobile templates
+autocmd BufNewFile,BufRead *.mobile.erb let b:eruby_subtype='html'
+autocmd BufNewFile,BufRead *.mobile.erb set filetype=eruby
+
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
 " }}}
 " Highlight Word {{{
 "
@@ -300,6 +333,12 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 
 " Normal key mappings
 
+"map Q to something useful
+noremap Q gq
+
+"make Y consistent with C and D
+nnoremap Y y$
+
 " Keep search matches in the middle of the window.
 nnoremap n nzzzv
 nnoremap N Nzzzv
@@ -312,15 +351,6 @@ nnoremap Vaa ggVG
 nnoremap <silent><C-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
-" Highlight the current line
-set cursorline
-
-" Set the tag file search order
-set tags=./tags
-
-" Set region to British English
-set spelllang=en_gb
-
 " Toggle spell checking on and off with `,s`
 nmap <silent> <leader>s :set spell!<CR>
 
@@ -328,40 +358,18 @@ nmap <silent> <leader>s :set spell!<CR>
 nmap <CR> :write<CR>
 
 " EasyMotion mappings
-let g:EasyMotion_leader_key = ';'
-nmap s ;w
-nmap S ;b
+nmap s <Plug>(easymotion-w)
+nmap S <Plug>(easymotion-b)
 
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" Click past 220
-if has('mouse_sgr')
-  set ttymouse=sgr
-endif
+" Use arrow keys to move lines
+nnoremap <Down> :m+<CR>==
+nnoremap <Up> :m-2<CR>==
 
-" Show the right cursor
-if exists('$ITERM_PROFILE')
-  if exists('$TMUX') 
-    let &t_SI = "\<Esc>[3 q"
-    let &t_EI = "\<Esc>[0 q"
-  else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  endif
-end
-
-" vp doesn't replace paste buffer
-function! RestoreRegister()
-  let @" = s:restore_reg
-  return ''
-endfunction
-function! s:Repl()
-  let s:restore_reg = @"
-  return "p@=RestoreRegister()\<cr>"
-endfunction
-vmap <silent> <expr> p <sid>Repl()
-
-" Support for mobile templates
-autocmd BufNewFile,BufRead *.mobile.erb let b:eruby_subtype='html'
-autocmd BufNewFile,BufRead *.mobile.erb set filetype=eruby
+" Do something about indenting
+nnoremap <TAB> >>
+nnoremap <S-TAB> <<
+vnoremap <TAB> >gv
+vnoremap <S-TAB> <gv
