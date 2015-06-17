@@ -1,4 +1,4 @@
-# Vim
+# NeoVim
 
 ![](http://i.imgur.com/MxReZ.png)
 
@@ -35,7 +35,7 @@ $ git clone git@github.com:Hates/vimfiles.git ~/.vim
 ## Create your initial symbolic links.
 
 ```
-$ ln -s ~/.vim/vimrc ~/.vimrc
+$ ln -s ~/.vim/vimrc ~/.nvimrc
 $ ln -s ~/.vim/nvimrc ~/.nvimrc
 ```
 
