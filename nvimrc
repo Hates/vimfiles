@@ -33,14 +33,11 @@ NeoBundle 'tpope/vim-haml'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'AndrewRadev/splitjoin.vim'
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'csscomb/vim-csscomb'
 NeoBundle 'jeffkreeftmeijer/vim-numbertoggle'
-"NeoBundle 'skalnik/vim-vroom'
-"NeoBundle 'xolox/vim-misc'
-"NeoBundle 'mtth/scratch.vim'
 
 " Theme plugins.
 NeoBundle 'bling/vim-airline'
-NeoBundle 'zenorocha/dracula-theme', { 'script_type' : 'colorscheme', 'rtp': 'vim' }
 NeoBundle 'chriskempson/base16-vim'
 
 " Required:
@@ -145,7 +142,7 @@ set hidden
 
 "dont load csapprox if we no gui support - silences an annoying warning
 if !has("gui")
-    let g:CSApprox_loaded = 1
+  let g:CSApprox_loaded = 1
 endif
 
 " \ is the leader character
@@ -156,8 +153,6 @@ let g:syntastic_enable_signs=1
 
 "tell the term has 256 colors
 set t_Co=256
-"set background=dark
-"colorscheme dracula
 set background=dark
 colorscheme base16-tomorrow
 
@@ -220,6 +215,7 @@ function! s:Repl()
 endfunction
 vmap <silent> <expr> p <sid>Repl()
 " }}}
+
 " Highlight Word {{{
 "
 " This mini-plugin provides a few mappings for highlighting words temporarily.
