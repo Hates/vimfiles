@@ -17,7 +17,7 @@ call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'jlanzarotta/bufexplorer'
-NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'Valloric/YouCompleteMe', {
       \ 'build' : {
@@ -38,7 +38,7 @@ NeoBundle 'csscomb/vim-csscomb'
 NeoBundle 'jeffkreeftmeijer/vim-numbertoggle'
 
 " Theme plugins.
-NeoBundle 'bling/vim-airline'
+NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'chriskempson/base16-vim'
 
 " Required:
@@ -165,20 +165,6 @@ set tags=./tags
 
 " Set region to British English
 set spelllang=en_gb
-
-"" airline settings
-let g:airline_theme='powerlineish'
-" remove separators
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-" set second section to filename
-let g:airline_section_b='%f'
-" empty third and fourth sections
-let g:airline_section_c=''
-let g:airline_section_x=''
-" put filetype in fifth section
-let g:airline_section_y='%Y'
-let g:airline_section_z=''
 
 set timeout ttimeoutlen=50
 
