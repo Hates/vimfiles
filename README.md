@@ -29,14 +29,8 @@
 ## Clone the project into your home directory
 
 ```
-$ git clone git@github.com:Hates/vimfiles.git ~/.vim
-```
-
-## Create your initial symbolic links.
-
-```
-$ ln -s ~/.vim/vimrc ~/.nvimrc
-$ ln -s ~/.vim/nvimrc ~/.nvimrc
+$ mkdir .config
+$ git clone git@github.com:Hates/vimfiles.git ~/.config/nvim
 ```
 
 ## Follow NeoBundle Install instructions.
