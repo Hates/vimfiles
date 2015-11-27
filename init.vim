@@ -264,6 +264,9 @@ let NERDTreeShowLineNumbers=0
 " Bufexplorer
 map <C-b> :BufExplorer<CR>
 
+" CtrlP
+let g:ctrlp_working_path_mode = 'w'
+
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
