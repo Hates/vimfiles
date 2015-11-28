@@ -18,7 +18,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'jlanzarotta/bufexplorer'
 NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'sjl/gundo.vim'
+NeoBundle 'simnalamburt/vim-mundo'
 NeoBundle 'Valloric/YouCompleteMe', {
       \ 'build' : {
       \     'mac' : './install.sh',
@@ -28,8 +28,8 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-haml'
 NeoBundle 'tpope/vim-abolish'
+NeoBundle 'tpope/vim-haml'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'AndrewRadev/splitjoin.vim'
@@ -49,10 +49,6 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
-
-"load ftplugins and indent files
-filetype plugin on
-filetype indent on
 
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -134,29 +130,19 @@ syntax on
 
 "some stuff to get the mouse going in term
 set mouse=a
-"set ttymouse=xterm2
 
 "hide buffers when not displayed
 set hidden
 
-"dont load csapprox if we no gui support - silences an annoying warning
-if !has("gui")
-  let g:CSApprox_loaded = 1
-endif
-
 " \ is the leader character
 let mapleader = "\\"
 
-"mark syntax errors with :signs
-let g:syntastic_enable_signs=1
-
-"tell the term has 256 colors
-set t_Co=256
+" Theme options
 set background=dark
 colorscheme base16-tomorrow
 
 " Highlight the current line
-set cursorline
+"set cursorline
 
 " Set the tag file search order
 set tags=./tags
@@ -168,22 +154,6 @@ set timeout ttimeoutlen=50
 
 " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set noshowmode
-
-" Click past 220
-if has('mouse_sgr')
-  set ttymouse=sgr
-endif
-
-" Show the right cursor
-if exists('$ITERM_PROFILE')
-  if exists('$TMUX') 
-    let &t_SI = "\<Esc>[3 q"
-    let &t_EI = "\<Esc>[0 q"
-  else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  endif
-end
 
 " Support for mobile templates
 autocmd BufNewFile,BufRead *.mobile.erb let b:eruby_subtype='html'
@@ -316,10 +286,25 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 
 " Normal key mappings
 
+" Map ENTER to save
+nmap <CR> :write<CR>
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" Do something about indenting
+nnoremap <TAB> >>
+nnoremap <S-TAB> <<
+vnoremap <TAB> >gv
+vnoremap <S-TAB> <gv
+
+" Use arrow keys to move lines
+nnoremap <Down> :m+<CR>==
+nnoremap <Up> :m-2<CR>==
 "map Q to something useful
 noremap Q gq
 
-"make Y consistent with C and D
+"make Y consistent with C and D. Copy to end of line.
 nnoremap Y y$
 
 " Keep search matches in the middle of the window.
@@ -337,22 +322,6 @@ nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 " Toggle spell checking on and off with `,s`
 nmap <silent> <leader>s :set spell!<CR>
 
-" Map ENTER to save
-nmap <CR> :write<CR>
-
 " EasyMotion mappings
 nmap s <Plug>(easymotion-w)
 nmap S <Plug>(easymotion-b)
-
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" Use arrow keys to move lines
-nnoremap <Down> :m+<CR>==
-nnoremap <Up> :m-2<CR>==
-
-" Do something about indenting
-nnoremap <TAB> >>
-nnoremap <S-TAB> <<
-vnoremap <TAB> >gv
-vnoremap <S-TAB> <gv
