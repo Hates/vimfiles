@@ -32,6 +32,7 @@ NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'ngmy/vim-rubocop'
 NeoBundle 'AndrewRadev/splitjoin.vim'
 NeoBundle 'jeffkreeftmeijer/vim-numbertoggle'
 
@@ -55,6 +56,9 @@ set backspace=indent,eol,start
 
 " Always show the statusline
 set laststatus=2
+
+" Always use system clipboard
+set clipboard+=unnamedplus
 
 "store lots of :cmdline history
 set history=1000
