@@ -34,7 +34,6 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'ngmy/vim-rubocop'
 NeoBundle 'AndrewRadev/splitjoin.vim'
-NeoBundle 'jeffkreeftmeijer/vim-numbertoggle'
 
 " Theme plugins.
 NeoBundle 'itchyny/lightline.vim'
