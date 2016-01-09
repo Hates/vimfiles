@@ -144,9 +144,6 @@ let mapleader = "\\"
 set background=dark
 colorscheme base16-tomorrow
 
-" Highlight the current line
-"set cursorline
-
 " Set the tag file search order
 set tags=./tags
 
@@ -226,8 +223,7 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " Hide search highlighting
 map <Leader>h :nohl <CR>
 
-" Opens an edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>e
+" Opens an edit command with the path of the currently edited file filled in Normal mode: <Leader>e
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " NERDTree
@@ -239,6 +235,10 @@ map <C-b> :BufExplorer<CR>
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'w'
+
+" EasyMotion mappings
+nmap s <Plug>(easymotion-w)
+nmap S <Plug>(easymotion-b)
 
 " The Silver Searcher
 if executable('ag')
@@ -324,7 +324,3 @@ nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " Toggle spell checking on and off with `,s`
 nmap <silent> <leader>s :set spell!<CR>
-
-" EasyMotion mappings
-nmap s <Plug>(easymotion-w)
-nmap S <Plug>(easymotion-b)
