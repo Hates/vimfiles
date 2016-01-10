@@ -143,6 +143,15 @@ let mapleader = "\\"
 " Theme options
 set background=dark
 colorscheme base16-tomorrow
+let g:lightline = {
+      \ 'colorscheme': 'Tomorrow_Night',
+      \ 'component_function': {
+      \   'filename': 'LightLineFilename'
+      \ }
+      \ }
+function! LightLineFilename()
+  return expand('%')
+endfunction
 
 " Set the tag file search order
 set tags=./tags
