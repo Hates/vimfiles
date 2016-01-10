@@ -16,21 +16,23 @@ call neobundle#begin(expand('~/.config/nvim/bundle'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'jlanzarotta/bufexplorer'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'simnalamburt/vim-mundo'
 NeoBundle 'Valloric/YouCompleteMe', {
       \ 'build' : {
       \     'mac' : './install.sh',
       \    },
       \ }
+NeoBundle 'jlanzarotta/bufexplorer'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'simnalamburt/vim-mundo'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'fatih/vim-go'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'ngmy/vim-rubocop'
 NeoBundle 'AndrewRadev/splitjoin.vim'
