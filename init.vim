@@ -38,8 +38,7 @@ NeoBundle 'fatih/vim-go'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'ngmy/vim-rubocop'
 NeoBundle 'AndrewRadev/splitjoin.vim'
-NeoBundle 'xolox/vim-misc'
-NeoBundle 'xolox/vim-easytags'
+NeoBundle 'ludovicchabant/vim-gutentags'
 NeoBundle 'majutsushi/tagbar'
 
 " Theme plugins.
@@ -323,6 +322,7 @@ vnoremap <S-TAB> <gv
 " Use arrow keys to move lines
 nnoremap <Down> :m+<CR>==
 nnoremap <Up> :m-2<CR>==
+
 "map Q to something useful
 noremap Q gq
 
