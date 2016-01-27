@@ -1,4 +1,5 @@
 "Use Vim settings, rather then Vi settings (much better!).
+
 "This must be first, because it changes other options as a side effect.
 set nocompatible
 filetype off
@@ -37,7 +38,8 @@ NeoBundle 'fatih/vim-go'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'ngmy/vim-rubocop'
 NeoBundle 'AndrewRadev/splitjoin.vim'
-NeoBundle 'ludovicchabant/vim-gutentags'
+NeoBundle 'xolox/vim-misc'
+NeoBundle 'xolox/vim-easytags'
 NeoBundle 'majutsushi/tagbar'
 
 " Theme plugins.
@@ -249,6 +251,7 @@ map <C-b> :BufExplorer<CR>
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'w'
+nnoremap <C-P> :CtrlPTag
 
 " EasyMotion mappings
 nmap s <Plug>(easymotion-w)
