@@ -251,7 +251,7 @@ map <C-b> :BufExplorer<CR>
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'w'
-nnoremap <C-P> :CtrlPTag
+nnoremap <S-p> :CtrlPTag<CR>
 
 " EasyMotion mappings
 nmap s <Plug>(easymotion-w)
