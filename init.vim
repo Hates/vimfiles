@@ -31,11 +31,13 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-haml'
+NeoBundle 'slim-template/vim-slim'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'ngmy/vim-rubocop'
 NeoBundle 'AndrewRadev/splitjoin.vim'
+NeoBundle 'ludovicchabant/vim-gutentags'
 
 " Theme plugins.
 NeoBundle 'itchyny/lightline.vim'
