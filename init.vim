@@ -252,6 +252,9 @@ map <C-b> :BufExplorer<CR>
 let g:ctrlp_working_path_mode = 'w'
 nnoremap <S-p> :CtrlPTag<CR>
 
+" Gutentags
+let gutentags_tagfile = '.tags'
+
 " EasyMotion mappings
 nmap s <Plug>(easymotion-w)
 nmap S <Plug>(easymotion-b)
