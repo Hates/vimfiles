@@ -63,7 +63,7 @@ set backspace=indent,eol,start
 set laststatus=2
 
 " Always use system clipboard
-set clipboard+=unnamedplus
+"set clipboard+=unnamedplus
 
 "store lots of :cmdline history
 set history=1000
