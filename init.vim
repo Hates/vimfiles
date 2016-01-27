@@ -38,6 +38,7 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'ngmy/vim-rubocop'
 NeoBundle 'AndrewRadev/splitjoin.vim'
 NeoBundle 'ludovicchabant/vim-gutentags'
+NeoBundle 'majutsushi/tagbar'
 
 " Theme plugins.
 NeoBundle 'itchyny/lightline.vim'
@@ -273,7 +274,9 @@ inoremap <silent> <F1> <ESC>:GundoToggle<CR>
 nnoremap <silent> <F1> :GundoToggle<CR>
 vnoremap <silent> <F1> <ESC>:GundoToggle<CR>
 
-" F2 - Unused
+" F2 - Tagbar
+nmap <F2> :TagbarToggle<CR>
+
 " F3 - Unused
 " F4 - Toggle paste
 nnoremap <F4> :set paste!<Bar>set paste?<CR>
