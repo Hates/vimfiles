@@ -28,7 +28,6 @@ NeoBundle 'simnalamburt/vim-mundo'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-haml'
@@ -36,8 +35,6 @@ NeoBundle 'slim-template/vim-slim'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'ngmy/vim-rubocop'
-NeoBundle 'AndrewRadev/splitjoin.vim'
 NeoBundle 'ludovicchabant/vim-gutentags'
 NeoBundle 'majutsushi/tagbar'
 
@@ -148,9 +145,8 @@ let mapleader = "\\"
 
 " Theme options
 set background=dark
-colorscheme base16-tomorrow
+colorscheme base16-bright
 let g:lightline = {
-      \ 'colorscheme': 'Tomorrow_Night',
       \ 'component_function': {
       \   'filename': 'LightLineFilename'
       \ }
