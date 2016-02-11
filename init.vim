@@ -19,11 +19,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
-NeoBundle 'Valloric/YouCompleteMe', {
-      \ 'build' : {
-      \     'mac' : './install.py',
-      \    },
-      \ }
+NeoBundle 'Shougo/deoplete.nvim'
 NeoBundle 'jlanzarotta/bufexplorer'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'simnalamburt/vim-mundo'
@@ -187,6 +183,9 @@ map <Leader>h :nohl <CR>
 
 " Opens an edit command with the path of the currently edited file filled in Normal mode: <Leader>e
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
 
 " NERDTree
 nnoremap <Leader>r :NERDTreeToggle<CR>
