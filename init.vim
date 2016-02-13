@@ -39,6 +39,7 @@ NeoBundle 'majutsushi/tagbar'
 " Theme plugins.
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'NLKNguyen/papercolor-theme'
 
 " Note: You don't set neobundle setting in .gvimrc!
 call neobundle#end()
@@ -140,7 +141,7 @@ let mapleader = "\\"
 
 " Theme options
 set background=dark
-colorscheme base16-tomorrow
+colorscheme PaperColor
 let g:lightline = {
       \ 'colorscheme': 'Tomorrow_Night',
       \ 'component_function': {
