@@ -8,6 +8,7 @@ Plug 'ludovicchabant/vim-gutentags'
 let gutentags_tagfile = '.tags'
 
 Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit'
@@ -90,8 +91,8 @@ if !isdirectory(expand(&directory))
 endif
 
 " Indent settings
-set shiftwidth = 2
-set softtabstop = 2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set autoindent
 
@@ -116,19 +117,19 @@ set wildignore+=*/tmp/*
 
 " Display tabs and trailing spaces
 set list
-set listchars = tab:▷⋅,trail:⋅,nbsp:⋅,extends:#
-set showbreak = ↪
+set listchars=tab:▷⋅,trail:⋅,nbsp:⋅,extends:#
+set showbreak=↪
 
 set formatoptions-=o "dont continue comments when pushing o/O
 
 " Vertical/horizontal scroll off settings
-set scrolloff = 6
-set sidescrolloff = 7
-set sidescroll = 1
+set scrolloff=6
+set sidescrolloff=7
+set sidescroll=1
 
 " Turn on syntax highlighting
 syntax enable
-syntax sync minlines = 250
+syntax sync minlines=250
 
 "some stuff to get the mouse going in term
 set mouse=a
