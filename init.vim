@@ -1,83 +1,82 @@
-"Use Vim settings, rather then Vi settings (much better!).
+call plug#begin('~/.confiv/nvim/plugged')
 
-" Note: Skip initialization for vim-tiny or vim-small.
-if 0 | endif
+Plug 'Shougo/deoplete.nvim'
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#max_list = 30
 
-if &compatible
- set nocompatible " Be iMproved
-endif
+Plug 'ludovicchabant/vim-gutentags'
+let gutentags_tagfile = '.tags'
 
-" Required:
-set runtimepath^=~/.config/nvim/bundle/neobundle.vim/
+Plug 'junegunn/fzf'
+let g:fzf_action = {
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-v': 'vsplit'
+      \ }
+nnoremap <c-p> :FZF<cr>
 
-" Required:
-call neobundle#begin(expand('~/.config/nvim/bundle/'))
+Plug 'jlanzarotta/bufexplorer'
+map <C-b> :BufExplorer<CR>
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+Plug 'simnalamburt/vim-mundo'
+inoremap <silent> <F1> <ESC>:MundoToggle<CR>
+nnoremap <silent> <F1> :MundoToggle<CR>
+vnoremap <silent> <F1> <ESC>:MundoToggle<CR>
 
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-NeoBundle 'Shougo/deoplete.nvim'
-NeoBundle 'jlanzarotta/bufexplorer'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'simnalamburt/vim-mundo'
-NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-abolish'
-NeoBundle 'tpope/vim-haml'
-NeoBundle 'slim-template/vim-slim'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'ludovicchabant/vim-gutentags'
-NeoBundle 'majutsushi/tagbar'
+Plug 'Lokaltog/vim-easymotion'
+nmap s <Plug>(easymotion-w)
+nmap S <Plug>(easymotion-b)
+
+Plug 'scrooloose/nerdcommenter'
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+nnoremap <Leader>r :NERDTreeToggle<CR>
+let NERDTreeShowLineNumbers=0
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
+
+" Language plugins.
+Plug 'tpope/vim-haml', { 'for': 'haml' }
+Plug 'slim-template/vim-slim', { 'for': 'slim' }
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+
+Plug 'majutsushi/tagbar'
+nmap <F2> :TagbarToggle<CR>
 
 " Theme plugins.
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'NLKNguyen/papercolor-theme'
+Plug 'itchyny/lightline.vim'
+Plug 'chriskempson/base16-vim'
 
-" Note: You don't set neobundle setting in .gvimrc!
-call neobundle#end()
+call plug#end()
 
-" Required:
+" Set filetype specific indentation
 filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-"End NeoBundle Scripts-------------------------
 
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" Always show the statusline
-set laststatus=2
+" Statusline settings
+set laststatus=2 noshowmode showcmd cmdheight=2
 
-"store lots of :cmdline history
+" Store lots of :cmdline history
 set history=1000
 set undoreload=10000
 set undofile
 
-set showcmd     "show incomplete cmds down the bottom
-set showmode    "show current mode down the bottom
+" Searching
+set incsearch "find the next match as we type the search
+set hlsearch "hilight searches by default
+set ignorecase "searches are case insensitive...
+set smartcase  "unless they contain one capital letter
 
-set incsearch   "find the next match as we type the search
-set hlsearch    "hilight searches by default
-set ignorecase  "searches are case insensitive...
-set smartcase   "...unless they contain one capital letter
+" No backups or swap
+set backup noswapfile
 
-" Backups
-set backup                        " enable backups
-set noswapfile                    " no swap file
-
-set undodir=~/.config/nvim/tmp/undo//     " undo files
+set undodir=~/.config/nvim/tmp/undo// " undo files
 set backupdir=~/.config/nvim/tmp/backup// " backups
-set directory=~/.config/nvim/tmp/swap//   " swap files
+set directory=~/.config/nvim/tmp/swap// " swap files
 
 " Make those folders automatically if they don't already exist.
 if !isdirectory(expand(&undodir))
@@ -91,8 +90,8 @@ if !isdirectory(expand(&directory))
 endif
 
 " Indent settings
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth = 2
+set softtabstop = 2
 set expandtab
 set autoindent
 
@@ -103,32 +102,33 @@ set nofoldenable
 set number
 
 " Ignore files
-set wildmenu                                     "enable ctrl-n and ctrl-p to scroll thru matches
-set wildmode=list:longest                        "make cmdline tab completion similar to bash
-set wildignore+=.hg,.git,.svn                    " Version control
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-set wildignore+=*.woff,*.ttf,*.svg,*.eot         " fonts images
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-set wildignore+=*.spl                            " compiled spelling word lists
-set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.DS_Store                       " OSX bullshit
-set wildignore+=*.orig                           " Merge resolution files
-set wildignore+=*/tmp/*                          " tmp directories
+set wildmenu
+set wildmode=list:longest
+set wildignore+=.hg,.git,.svn
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+set wildignore+=*.woff,*.ttf,*.svg,*.eot
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest
+set wildignore+=*.spl
+set wildignore+=*.sw?
+set wildignore+=*.DS_Store
+set wildignore+=*.orig
+set wildignore+=*/tmp/*
 
 " Display tabs and trailing spaces
 set list
-set listchars=tab:▷⋅,trail:⋅,nbsp:⋅,extends:#
-set showbreak=↪
+set listchars = tab:▷⋅,trail:⋅,nbsp:⋅,extends:#
+set showbreak = ↪
 
 set formatoptions-=o "dont continue comments when pushing o/O
 
-"vertical/horizontal scroll off settings
-set scrolloff=6
-set sidescrolloff=7
-set sidescroll=1
+" Vertical/horizontal scroll off settings
+set scrolloff = 6
+set sidescrolloff = 7
+set sidescroll = 1
 
-"turn on syntax highlighting
-syntax on
+" Turn on syntax highlighting
+syntax enable
+syntax sync minlines = 250
 
 "some stuff to get the mouse going in term
 set mouse=a
@@ -141,7 +141,7 @@ let mapleader = "\\"
 
 " Theme options
 set background=dark
-colorscheme PaperColor
+colorscheme base16-tomorrow
 let g:lightline = {
       \ 'colorscheme': 'Tomorrow_Night',
       \ 'component_function': {
@@ -158,10 +158,8 @@ set tags=./tags
 " Set region to British English
 set spelllang=en_gb
 
+" Set the timeout to be low
 set timeout ttimeoutlen=50
-
-" Hide the default mode text (e.g. -- INSERT -- below the statusline)
-set noshowmode
 
 " Support for mobile templates
 autocmd BufNewFile,BufRead *.mobile.erb let b:eruby_subtype='html'
@@ -185,27 +183,6 @@ map <Leader>h :nohl <CR>
 " Opens an edit command with the path of the currently edited file filled in Normal mode: <Leader>e
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-
-" NERDTree
-nnoremap <Leader>r :NERDTreeToggle<CR>
-let NERDTreeShowLineNumbers=0
-
-" Bufexplorer
-map <C-b> :BufExplorer<CR>
-
-" CtrlP
-let g:ctrlp_working_path_mode = 'w'
-nnoremap <S-p> :CtrlPTag<CR>
-
-" Gutentags
-let gutentags_tagfile = '.tags'
-
-" EasyMotion mappings
-nmap s <Plug>(easymotion-w)
-nmap S <Plug>(easymotion-b)
-
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
@@ -221,15 +198,6 @@ command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
 " Function key mappings
 
-" F1 - Gundo
-inoremap <silent> <F1> <ESC>:GundoToggle<CR>
-nnoremap <silent> <F1> :GundoToggle<CR>
-vnoremap <silent> <F1> <ESC>:GundoToggle<CR>
-
-" F2 - Tagbar
-nmap <F2> :TagbarToggle<CR>
-
-" F3 - Unused
 " F4 - Toggle paste
 nnoremap <F4> :set paste!<Bar>set paste?<CR>
 
@@ -278,10 +246,6 @@ noremap Q gq
 
 "make Y consistent with C and D. Copy to end of line.
 nnoremap Y y$
-
-" Keep search matches in the middle of the window.
-nnoremap n nzzzv
-nnoremap N Nzzzv
 
 " Select entire buffer
 nnoremap vaa ggvGg_
