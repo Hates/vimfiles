@@ -29,9 +29,10 @@ nmap S <Plug>(easymotion-b)
 
 Plug 'scrooloose/nerdcommenter'
 
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-nnoremap <Leader>r :NERDTreeToggle<CR>
-let NERDTreeShowLineNumbers=0
+Plug 'tpope/vim-vinegar'
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"nnoremap <Leader>r :NERDTreeToggle<CR>
+"let NERDTreeShowLineNumbers=0
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
@@ -247,6 +248,11 @@ noremap Q gq
 
 "make Y consistent with C and D. Copy to end of line.
 nnoremap Y y$
+
+" Map <LEADER>-R to LExploer
+map <Leader>r :Lexplore<CR>
+let g:netrw_liststyle=3
+let g:netrw_winsize=-38
 
 " Select entire buffer
 nnoremap vaa ggvGg_
