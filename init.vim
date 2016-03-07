@@ -29,10 +29,8 @@ nmap S <Plug>(easymotion-b)
 
 Plug 'scrooloose/nerdcommenter'
 
+Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'tpope/vim-vinegar'
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-"nnoremap <Leader>r :NERDTreeToggle<CR>
-"let NERDTreeShowLineNumbers=0
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'

@@ -1,8 +1,10 @@
 # Ignore bundle directory.
+autoload/
 bundle/
 tmp/
 
 .init.vim-rplugin~
+.netrwhist
 .tags
 .tags.lock
 .tags.temp
