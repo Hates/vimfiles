@@ -2,7 +2,9 @@ call plug#begin('~/.confiv/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#max_list = 30
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#disable_auto_complete = 1
+let g:deoplete#max_list = 20
 
 Plug 'ludovicchabant/vim-gutentags'
 let gutentags_tagfile = '.tags'
@@ -30,7 +32,8 @@ nmap S <Plug>(easymotion-b)
 Plug 'scrooloose/nerdcommenter'
 
 Plug 'jeetsukumaran/vim-filebeagle'
-Plug 'tpope/vim-vinegar'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+nnoremap <Leader>r :NERDTreeToggle<CR>
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
@@ -246,11 +249,6 @@ noremap Q gq
 
 "make Y consistent with C and D. Copy to end of line.
 nnoremap Y y$
-
-" Map <LEADER>-R to LExploer
-map <Leader>r :Lexplore<CR>
-let g:netrw_liststyle=3
-let g:netrw_winsize=-38
 
 " Select entire buffer
 nnoremap vaa ggvGg_
