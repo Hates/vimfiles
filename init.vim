@@ -9,7 +9,7 @@ let g:deoplete#max_list = 20
 Plug 'ludovicchabant/vim-gutentags'
 let gutentags_tagfile = '.tags'
 
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
