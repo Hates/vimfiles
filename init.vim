@@ -3,7 +3,6 @@ call plug#begin('~/.confiv/nvim/plugged')
 Plug 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#disable_auto_complete = 1
 let g:deoplete#max_list = 20
 
 Plug 'ludovicchabant/vim-gutentags'
