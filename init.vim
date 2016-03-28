@@ -56,20 +56,14 @@ call plug#end()
 " Set filetype specific indentation
 filetype plugin indent on
 
-"allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
 " Statusline settings
-set laststatus=2 noshowmode showcmd cmdheight=2
+set noshowmode showcmd cmdheight=2
 
 " Store lots of :cmdline history
-set history=1000
 set undoreload=10000
 set undofile
 
 " Searching
-set incsearch "find the next match as we type the search
-set hlsearch "hilight searches by default
 set ignorecase "searches are case insensitive...
 set smartcase  "unless they contain one capital letter
 
@@ -95,7 +89,6 @@ endif
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-set autoindent
 
 " Folding settings
 set nofoldenable
@@ -104,7 +97,6 @@ set nofoldenable
 set number
 
 " Ignore files
-set wildmenu
 set wildmode=list:longest
 set wildignore+=.hg,.git,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
