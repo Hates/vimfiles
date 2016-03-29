@@ -1,5 +1,8 @@
 call plug#begin('~/.confiv/nvim/plugged')
 
+Plug 'vim-startify'
+Plug 'benekastah/neomake'
+
 Plug 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
@@ -37,12 +40,11 @@ nnoremap <Leader>r :NERDTreeToggle<CR>
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 
-" Language plugins.
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 
 Plug 'majutsushi/tagbar'
 nmap <F2> :TagbarToggle<CR>
