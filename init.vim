@@ -4,9 +4,10 @@ Plug 'vim-startify'
 Plug 'benekastah/neomake'
 
 Plug 'Shougo/deoplete.nvim'
+let g:deoplete#max_list = 20
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#max_list = 20
+let g:deoplete#auto_completion_start_length = 3
 
 Plug 'ludovicchabant/vim-gutentags'
 let gutentags_tagfile = '.tags'
@@ -223,6 +224,27 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 
 " Map ENTER to save
 nmap <CR> :write<CR>
+
+
+" <Tab> completion:
+" 1. If popup menu is visible, select and insert next item
+" 2. Otherwise, if within a snippet, jump to next input
+" 3. Otherwise, if preceding chars are whitespace, insert tab char
+" 4. Otherwise, start manual autocomplete
+imap <silent><expr><Tab> pumvisible() ? "\<C-n>"
+        \ : (<SID>is_whitespace() ? "\<Tab>"
+        \ : deoplete#mappings#manual_complete())
+
+smap <silent><expr><Tab> pumvisible() ? "\<C-n>"
+        \ : (<SID>is_whitespace() ? "\<Tab>"
+        \ : deoplete#mappings#manual_complete())
+
+inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:is_whitespace() "{{{
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~? '\s'
+endfunction "}}}
 
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
