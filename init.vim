@@ -1,7 +1,6 @@
 call plug#begin('~/.confiv/nvim/plugged')
 
-Plug 'vim-startify'
-Plug 'benekastah/neomake'
+Plug 'rking/ag.vim'
 
 Plug 'Shougo/deoplete.nvim'
 let g:deoplete#max_list = 20
@@ -180,19 +179,6 @@ map <Leader>h :nohl <CR>
 " Opens an edit command with the path of the currently edited file filled in Normal mode: <Leader>e
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
-" The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-
 " Function key mappings
 
 " F4 - Toggle paste
@@ -245,9 +231,6 @@ function! s:is_whitespace() "{{{
         let col = col('.') - 1
         return !col || getline('.')[col - 1]  =~? '\s'
 endfunction "}}}
-
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Do something about indenting
 nnoremap <TAB> >>
