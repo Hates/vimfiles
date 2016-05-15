@@ -27,7 +27,9 @@ inoremap <silent> <F1> <ESC>:MundoToggle<CR>
 nnoremap <silent> <F1> :MundoToggle<CR>
 vnoremap <silent> <F1> <ESC>:MundoToggle<CR>
 
-Plug 'justinmk/vim-sneak'
+Plug 'Lokaltog/vim-easymotion'
+nmap s <Plug>(easymotion-w)
+nmap S <Plug>(easymotion-b)
 
 Plug 'scrooloose/nerdcommenter'
 
