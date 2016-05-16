@@ -6,7 +6,8 @@ Plug 'Shougo/deoplete.nvim'
 let g:deoplete#max_list = 20
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_completion_start_length = 3
+let g:deoplete#auto_completion_start_length = 4
+let g:deoplete#auto_complete_delay = 100
 
 Plug 'ludovicchabant/vim-gutentags'
 let gutentags_tagfile = '.tags'
