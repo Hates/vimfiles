@@ -11,6 +11,6 @@ $ mkdir .config
 $ git clone git@github.com:Hates/vimfiles.git ~/.config/nvim
 ```
 
-## Follow NeoBundle Install instructions.
+## Follow Vim Plug Install instructions.
 
-[https://github.com/Shougo/neobundle.vim](https://github.com/Shougo/neobundle.vim)
+[https://github.com/junegunn/vim-plug](https://github.com/junegunn/vim-plug)
