@@ -57,6 +57,15 @@ Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
+" Set nocompatible
+set nocompatible
+
+" Ensure fast tty
+set ttyfast
+
+" Use lazy redraw
+set lazyredraw
+
 " Set filetype specific indentation
 filetype plugin indent on
 
