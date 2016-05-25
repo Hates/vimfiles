@@ -1,12 +1,14 @@
-call plug#begin('~/.confiv/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
 Plug 'rking/ag.vim'
 
-Plug 'Shougo/deoplete.nvim'
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#max_list = 20
-let g:deoplete#auto_complete_start_length = 4
-let g:deoplete#auto_complete_delay = 50
+Plug 'tpope/vim-fugitive'
+
+"Plug 'Shougo/deoplete.nvim'
+"let g:deoplete#enable_at_startup = 1
+"let g:deoplete#max_list = 20
+"let g:deoplete#auto_complete_start_length = 4
+"let g:deoplete#auto_complete_delay = 50
 
 Plug 'ludovicchabant/vim-gutentags'
 let gutentags_tagfile = '.tags'
@@ -72,9 +74,9 @@ set smartcase  "unless they contain one capital letter
 " No backups or swap
 set backup noswapfile
 
-set undodir=~/.config/nvim/tmp/undo// " undo files
-set backupdir=~/.config/nvim/tmp/backup// " backups
-set directory=~/.config/nvim/tmp/swap// " swap files
+set undodir=~/.vim/tmp/undo// " undo files
+set backupdir=~/.vim/tmp/backup// " backups
+set directory=~/.vim/tmp/swap// " swap files
 
 " Make those folders automatically if they don't already exist.
 if !isdirectory(expand(&undodir))
