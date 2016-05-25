@@ -1,5 +1,6 @@
 # Ignore bundle directory.
 autoload/
+plugged/
 bundle/
 tmp/
 
