@@ -1,7 +1,5 @@
 # Vim
 
-# Install
-
 ## Clone the project into your home directory
 
 ```
