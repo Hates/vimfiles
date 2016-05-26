@@ -1,6 +1,4 @@
-# NeoVim
-
-![](http://i.imgur.com/MxReZ.png)
+# Vim
 
 # Install
 
