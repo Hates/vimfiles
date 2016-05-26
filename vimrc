@@ -141,6 +141,7 @@ syntax sync minlines=250
 
 "some stuff to get the mouse going in term
 set mouse=a
+set ttymouse=sgr
 
 "hide buffers when not displayed
 set hidden
