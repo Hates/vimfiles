@@ -68,6 +68,9 @@ set ttyfast
 " Use lazy redraw
 set lazyredraw
 
+" Make backspace work like other apps
+set backspace=2
+
 " Set filetype specific indentation
 filetype plugin indent on
 
