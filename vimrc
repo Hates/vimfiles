@@ -142,11 +142,14 @@ set sidescroll=1
 syntax enable
 syntax sync minlines=250
 
-"some stuff to get the mouse going in term
+" Highlight search results
+set hlsearch
+
+" Some stuff to get the mouse going in term
 set mouse=a
 set ttymouse=sgr
 
-"hide buffers when not displayed
+" Hide buffers when not displayed
 set hidden
 
 " \ is the leader character
