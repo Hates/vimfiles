@@ -41,8 +41,8 @@ nnoremap <Leader>r :NERDTreeToggle<CR>
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
+Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
