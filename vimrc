@@ -4,6 +4,11 @@ Plug 'rking/ag.vim'
 
 Plug 'tpope/vim-fugitive'
 
+Plug 'scrooloose/syntastic', { 'for': 'javascript' }
+let g:syntastic_javascript_checkers = ['standard']
+autocmd bufwritepost *.js silent !standard-format -w %
+set autoread
+
 Plug 'ludovicchabant/vim-gutentags'
 let gutentags_tagfile = '.tags'
 
@@ -36,6 +41,7 @@ nnoremap <Leader>r :NERDTreeToggle<CR>
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
@@ -50,6 +56,7 @@ nmap <F2> :TagbarToggle<CR>
 " Theme plugins.
 Plug 'itchyny/lightline.vim'
 Plug 'chriskempson/base16-vim'
+Plug 'dracula/vim'
 
 call plug#end()
 
