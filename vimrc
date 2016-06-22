@@ -158,7 +158,7 @@ let mapleader = "\\"
 
 " Theme options
 set background=dark
-colorscheme base16-tomorrow
+colorscheme dracula
 let g:lightline = {
       \ 'colorscheme': 'Tomorrow_Night',
       \ 'component_function': {
