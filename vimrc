@@ -1,13 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'rking/ag.vim'
-
-Plug 'tpope/vim-fugitive'
-
-Plug 'scrooloose/syntastic', { 'for': 'javascript' }
-let g:syntastic_javascript_checkers = ['standard']
-autocmd bufwritepost *.js silent !standard-format -w %
-set autoread
+Plug 'Yggdroot/indentLine'
 
 Plug 'ludovicchabant/vim-gutentags'
 let gutentags_tagfile = '.tags'
@@ -36,6 +29,9 @@ Plug 'scrooloose/nerdcommenter'
 
 Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+let g:NERDTreeMouseMode=1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 nnoremap <Leader>r :NERDTreeToggle<CR>
 
 Plug 'tpope/vim-surround'
@@ -47,27 +43,33 @@ Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-let g:rustfmt_autosave = 1
 
 Plug 'majutsushi/tagbar'
 nmap <F2> :TagbarToggle<CR>
 
-" Theme plugins.
+"" Theme plugins.
 Plug 'itchyny/lightline.vim'
-Plug 'chriskempson/base16-vim'
 Plug 'dracula/vim'
 
 call plug#end()
 
+" Set the font...
+set guifont=Menlo\ Regular:h14
+
 " Set nocompatible
 set nocompatible
+
+" Automatically load changed files
+set autoread
 
 " Ensure fast tty
 set ttyfast
 
 " Use lazy redraw
 set lazyredraw
+
+" Set the default encoding
+set encoding=utf-8
 
 " Make backspace work like other apps
 set backspace=2
@@ -76,7 +78,9 @@ set backspace=2
 filetype plugin indent on
 
 " Statusline settings
-set noshowmode showcmd cmdheight=2
+set noshowmode
+set showcmd
+set cmdheight=2
 
 " Store lots of :cmdline history
 set undoreload=10000
@@ -153,6 +157,9 @@ set ttymouse=sgr
 " Hide buffers when not displayed
 set hidden
 
+" Disable the bell
+set visualbell t_vb=
+
 " \ is the leader character
 let mapleader = "\\"
 
@@ -176,7 +183,8 @@ set tags=./tags
 set spelllang=en_gb
 
 " Set the timeout to be low
-set timeout ttimeoutlen=50
+set timeout
+set ttimeoutlen=50
 
 " Support for mobile templates
 autocmd BufNewFile,BufRead *.mobile.erb let b:eruby_subtype='html'
