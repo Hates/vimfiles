@@ -1,9 +1,0 @@
-# Ignore bundle directory.
-autoload/
-plugged/
-bundle/
-tmp/
-
-.tags
-.tags.lock
-.tags.temp
