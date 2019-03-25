@@ -3,8 +3,8 @@
 ## Clone the project into your home directory
 
 ```
-$ mkdir .config
-$ git clone git@github.com:Hates/vimfiles.git ~/.config/nvim
+$ git clone git@github.com:Hates/vimfiles.git ~/.vimfiles
+$ ln -s ~/.vimfiles/vimrc .vimrc
 ```
 
 ## Follow Vim Plug Install instructions.
