@@ -187,10 +187,15 @@ if has("gui_macvim")
     autocmd GUIEnter * set vb t_vb=
 endif
 
-
 " Add a bit extra margin to the left
 set foldcolumn=1
 
+" Some stuff to get the mouse going in term
+set mouse=a
+set ttymouse=sgr
+
+" Set line numbers
+set number
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -204,11 +209,21 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme desert
+    colorscheme dracula
 catch
 endtry
 
 set background=dark
+
+let g:lightline = {
+      \ 'colorscheme': 'Tomorrow_Night',
+      \ 'component_function': {
+      \   'filename': 'LightLineFilename'
+      \ }
+      \ }
+function! LightLineFilename()
+  return expand('%')
+endfunction
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -233,6 +248,17 @@ set nobackup
 set nowb
 set noswapfile
 
+" Ignore files
+set wildmode=list:longest
+set wildignore+=.hg,.git,.svn
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+set wildignore+=*.woff,*.ttf,*.svg,*.eot
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest
+set wildignore+=*.spl
+set wildignore+=*.sw?
+set wildignore+=*.DS_Store
+set wildignore+=*.orig
+set wildignore+=*/tmp/*
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -334,6 +360,12 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Map ENTER to save
+nmap <CR> :write<CR>
+
+" Hide search highlighting
+map <Leader>h :nohl <CR>
+
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
@@ -363,6 +395,13 @@ if has("autocmd")
     autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
+" F4 - Toggle paste
+nnoremap <F4> :set paste!<Bar>set paste?<CR>
+
+" F5 - Toggle wrapping
+set linebreak "wrap lines at convenient points
+set nowrap " Set no wrap and bind.
+nnoremap <F5> :set nowrap! <CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
