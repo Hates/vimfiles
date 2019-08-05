@@ -144,7 +144,7 @@ endif
 set ruler
 
 " Height of the command bar
-set cmdheight=2
+set cmdheight=1
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -196,9 +196,6 @@ set ttymouse=sgr
 
 " Set line numbers
 set number
-
-" Remove top tab bar
-set showtabline=0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -336,7 +333,7 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 " Specify the behavior when switching between buffers 
 try
   set switchbuf=useopen,usetab,newtab
-  set stal=2
+  set showtabline=1
 catch
 endtry
 
