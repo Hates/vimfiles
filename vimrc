@@ -88,7 +88,7 @@ let g:tagbar_type_elixir = {
 
 "" Theme plugins.
 Plug 'itchyny/lightline.vim'
-Plug 'dracula/vim'
+Plug 'Hates/vim', { 'as': 'dracula' }
 
 call plug#end()
 
@@ -197,21 +197,17 @@ set ttymouse=sgr
 " Set line numbers
 set number
 
+" Remove top tab bar
+set showtabline=0
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-syntax enable 
+syntax on
 
-" Enable 256 colors palette in Gnome Terminal
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
-endif
-
-try
-    colorscheme dracula
-catch
-endtry
+color dracula
 
 set background=dark
 
@@ -259,6 +255,7 @@ set wildignore+=*.sw?
 set wildignore+=*.DS_Store
 set wildignore+=*.orig
 set wildignore+=*/tmp/*
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -431,6 +428,10 @@ map <leader>x :e ~/buffer.md<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
+" F10 - Findhighlighting
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
